@@ -24,6 +24,7 @@
 \geometry{left=30mm,right=30mm,top=20mm,bottom=20mm}
 \usepackage{enumerate}
 \usepackage[dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
 \renewcommand{\baselinestretch}{1.2}
 
 \usetikzlibrary{positioning}
@@ -155,20 +156,21 @@
 %\addbibresource{oracle-cc.bib}
 \renewbibmacro{in:}{}
 
-\title{\Huge 可測基数ノート}
+\title{\vspace{-2cm} \HUGE 可測基数ノート}
 \author{でぃぐ}
 
 \begin{document}
+	
 	\maketitle
 	
-	%\begin{abstract}
-	%	hogehoge
-	%end{abstract}
+	\begin{abstract}
+		本稿は可測基数についてのノートである．
+	\end{abstract}
 	
 	\tableofcontents
 	
 	
-	\section{可測基数の初歩}
+	\section{可測基数の初歩およびUlamの定理の証明}
 	
 	\begin{defi}
 		\begin{enumerate}
@@ -185,7 +187,7 @@
 	\begin{proof}
 		$U$が$\kappa$-完備でないと仮定する．
 		すると$\kappa$の分割$\{ X_\alpha : \alpha < \gamma \}$があって，$\gamma < \kappa$かつ各$X_\alpha$は$U$の意味で小さい．
-		$f \colon \kappa \to \gamma$を次で定める：
+		関数$f \colon \kappa \to \gamma$を次で定める：
 		\[
 			f(x) = \alpha \iff x \in X_\alpha.
 		\]
@@ -199,7 +201,7 @@
 		したがって，$D$は$\gamma$上の単項$\sigma$-完備な超フィルターだが，$\gamma < \kappa$より，これは$\kappa$の最小性に矛盾．
 	\end{proof}
 
-	\begin{lem}
+	\begin{lem}\label{lem:measisinacc}
 	可測基数は到達不能基数である．
 	\end{lem}
 	\begin{proof}
@@ -226,7 +228,112 @@
 		で定めると$X \in U$であるが，明らかに$X$は1点集合である．これは$U$の非単項性に矛盾．
 	\end{proof}
 
-	\section{Ulamの定理の証明}
+	\begin{lem}
+		\begin{enumerate}
+			\item $\kappa$を次を満たす最小の基数とする: $\kappa$上の非自明かつ$\sigma$加法的な測度が存在する．
+			$\mu$をそのような測度とする．
+			このとき測度$0$集合のイデアル$I_\mu$は$\kappa$完備である．
+			\item $\kappa$を次を満たす最小の基数とする: $\kappa$上の$\sigma$完備かつ $\sigma$飽和的イデアルが存在する．
+			$I$をそのようなイデアルとする．
+			このとき$I$は$\kappa$完備である．
+		\end{enumerate}
+	\end{lem}
+	\begin{proof}
+		(1). $I_\mu$が$\kappa$完備ではないと仮定する．
+		すると測度$0$集合の族$\{X_\alpha : \alpha < \gamma \}$で，$\gamma < \kappa$かつ，それらの和集合$X = \bigcup_{\alpha < \gamma} X_\alpha$は測度正なものがとれる．
+		$X_\alpha$たちは互いに素であると仮定しても良い．
+		$f \colon X \to \gamma$を
+		\[
+		f(x) = \alpha \iff x \in X_\alpha
+		\]
+		と定め，$\gamma$上の測度$\nu$を
+		\[
+			\nu(Z) = \frac{\mu(f^{-1}(Z))}{\mu(X)} 
+		\]
+		と定める．
+		$\nu$は$\sigma$加法的である．
+		また，$\nu$は非自明である，なぜなら，各$\alpha < \gamma$について$\nu(\{\alpha\}) = \frac{\mu(X_\alpha)}{\mu(X)} = 0$だからである．
+		これは$\kappa$の最小性に反する．
+		
+		(2)の証明は(1)と同様である．
+	\end{proof}
+
+	\begin{lem}
+		$\mu$を集合 $S$上の測度とし，$I_\mu$を測度$0$集合のイデアルとする．
+		このとき，もし$I_\mu$が$\kappa$完備なら，$\mu$は$\kappa$完備である．
+	\end{lem}
+	\begin{proof}
+		$\gamma < \kappa$とし，$\seq{X_\alpha : \alpha < \gamma}$を互いに素な$S$の部分集合の族とする．
+		$X_\alpha$たちが互いに素なので，そのうちたかだか可算個が正の測度を持つ．
+		よって，
+		\[
+		\{ X_\alpha : \alpha < \gamma \} = \{ Y_n : n \in \omega \} \cup \{ Z_\alpha : \alpha < \gamma \}
+		\]
+		と書くことができる．ここに各$Z_\alpha$は測度$0$集合．よって，
+		\[
+		\mu(\bigcup_{\alpha < \gamma} X_\alpha) = \mu(\bigcup_{n \in \omega} Y_n) + \mu(\bigcup_{\alpha < \gamma} Z_\alpha)
+		\]
+		を得る．$\mu$が$\sigma$加法的なので，
+		\[
+		 \mu(\bigcup_{n \in \omega} Y_n) =  \sum_{n \in \omega} \mu(Y_n) 
+		 \]
+		 である．また，$I_\mu$が$\kappa$完備なので，
+		 \[
+		 \mu(\bigcup_{\alpha < \gamma} Z_\alpha) = 0
+		 \]
+		 である．以上より，
+		 \[
+		 \mu(\bigcup_{\alpha < \gamma} X_\alpha) = \sum_{\alpha < \gamma} \mu(X_\alpha)
+		 \]
+		 を得る．
+	\end{proof}
+
+	\begin{lem}\label{lem:continuum}
+		\begin{enumerate}
+			\item ある集合上の原子なしで非自明な$\sigma$加法的な測度が存在するとき，ある基数$\kappa \le 2^{\aleph_0}$上に非自明な$\sigma$加法的な測度が存在する．
+			\item $I$を集合$S$上の$\sigma$完備$\sigma$飽和的イデアルとする．このとき，ある$Z \subset S$に対して$I \restrict Z = \{ X \subset Z : X \in I \}$が極大イデアルであるか，または，$\sigma$完備$\sigma$飽和的イデアルがある$\kappa \le 2^{\aleph_0}$上に存在するかのどちらかが成り立つ．
+		\end{enumerate}
+	\end{lem}
+	\begin{proof}
+		(1). $\mu$をそのような測度とする．$S$の測度正な部分集合からなり，逆向きの包含関係で順序付けられた木$T$を構成する．
+		$T$の根は$S$である．
+		各$X \in T$について，$X$の測度正な集合への分割$X = Y \cup Z, Y \cap Z = \emptyset$を取り，この2つを$X$の直後の元とする．
+		$\alpha$が極限順序数のとき$T$の第$\alpha$レベルにはすべての共通部分$X = \bigcap_{\xi < \alpha} X_\xi$であって，$\seq{X_\xi : \xi < \alpha}$は$T \restrict \alpha$の増大鎖で$X_\xi$は第$\xi$レベルの元，$X$は測度正なものたちを置く．
+		
+		$T$のどの枝も可算である：なぜなら，$\seq{X_\xi : \xi < \alpha}$が枝ならば，$\seq{ X_\xi \setminus X_{\xi+1} : \xi < \alpha }$は測度正な集合の互いに素な族となるからである．
+		
+		同様に，$T$のどのレベルも可算であることも分かる．
+		よって，$T$はたかだか$2^{\aleph_0}$個の極大枝を持つ (各$\alpha < \omega_1$について高さ$\alpha$の極大枝の個数はたかだか$2^{\aleph_0}$．よってそれらの$\omega_1$個の和集合でたかだか$2^{\aleph_0}$個となる)．
+		
+		$\{ b_\alpha : \alpha < \kappa \}$, $\kappa \le 2^{\aleph_0}$をすべての極大枝$b = \{ X_\xi : \xi < \gamma \}$であって，$\bigcap_{\xi < \gamma} X_\xi$が非空なものの枚挙とする．
+		各$\alpha < \kappa$について$Z_\alpha = \bigcap b_\alpha$とおく．
+		$\{ Z_\alpha : \alpha < \kappa \}$は$S$の測度$0$集合への分割となる 
+		($Z_\alpha$が測度$0$でないとすると，一個高さを上げることができ枝の極大性に反する; また，互いの異なる極大枝$b_\alpha$と$b_\beta$はどこかで枝分かれしているはずだから，後続ステップでの構成の仕方より，$X_\alpha \cap X_\beta = \emptyset$を得る．; $s \in S$を任意に取るとき，$s$が入っている集合を根から追跡することにより，ある$X_\alpha$に$s$が入っていることがわかる)．
+		あとは$f \colon S \to \kappa$を$f(x) = \alpha \iff x \in Z_\alpha$とおき，$\kappa$上の測度$\nu$を$\nu(Z) = \mu(f^{-1}(Z))$とおけば，$\nu$は非自明な$\sigma$加法的測度である．
+		
+		%$\nu$が原子なしであることを示そう．
+		%$Z$が$\nu$の原子であると仮定する．
+		%$Y = f^{-1}(Z)$とおく．
+
+		%もし$X \in T$かつ$\mu(X \cap Y) \ne 0$であって，$X_1, X_2$を$X$の$X$の2つの直後の元とするとき，$\mu(X_1 \cap Y) = 0$または$\mu(X_2 \cap Y) = 0$である．なぜなら，両方とも正だとすると，$f$の定め方より$f(X_1)$と$f(X_2)$は互いに素であって，どちらの$i < 2$についても$\nu(f(X_i) \cap Z) = \mu(f^{-1}(f(X_i) \cap Z)) > \mu(X_i \cap Y) > 0$となり，$Z$が原子であることに反するからである．
+		
+		%このことと帰納法により，$T$の各レベルにおいて一意に$X$があって，$\mu(Y \cap X) \ne 0$を満たす．
+		
+		(2). (1)と同様である．
+	\end{proof}
+	
+	\begin{cor}
+		$\kappa$が実数値可測基数ならば，$\kappa$は可測基数か，$\kappa \le 2^{\aleph_0}$である．
+		より一般に，$\kappa$が$\kappa$完備$\sigma$飽和的イデアルを持つと，$\kappa$は可測基数であるか，$\kappa \le 2^{\aleph_0}$である．
+	\end{cor}
+	\begin{proof}
+		補題\ref{lem:continuum}の証明より，$\mu$が$S$上の原子なしの測度なら，$S$のたかだか$2^{\aleph_0}$個への測度$0$個の分割が存在することがわかる．つまり，$\mu$は$(2^{\aleph_0})^+$加法的ではない．
+		したがって，原子なしの$\kappa$加法的測度を$\kappa$が持つとき，$\kappa \le 2^{\aleph_0}$である (結論の否定を取ると，$\kappa \ge (2^{\aleph_0})^+$だが，これと$\kappa$加法性より$(2^{\aleph_0})^+$加法性が出るから)．
+		後半の主張も同様．
+	\end{proof}
+
+	補題\label{lem:continuum}の(1)の主張の結論には「原子なし」が含まれていなかったが，これは実際には「原子なし」と結論付けられる．なぜなら，原子があると$\kappa$は可測基数となるが，補題\ref{lem:measisinacc}より，それは$\kappa \le 2^{\aleph_0}$と相容れないからだ．
+	
 	
 	\section{正規フィルター}
 	
