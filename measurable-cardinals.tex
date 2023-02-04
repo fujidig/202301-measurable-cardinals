@@ -145,8 +145,9 @@
 \newtheorem*{cor*}{系}
 \newtheorem*{notation*}{記法}
 \newtheorem{asm}[thm]{仮定}
-\newtheorem{prob}[thm]{問題}
+\newtheorem{prob}[thm]{演習問題}
 \newtheorem{conj}[thm]{予想}
+\newtheorem{defiandlem}[thm]{定義と補題}
 \renewcommand{\proofname}{証明}
 
 \newenvironment{claim}[1]{\par\noindent\underline{主張 #1:}\space}{}
@@ -178,6 +179,8 @@
 			\item 基数$\kappa$が\textbf{実数値可測基数}であるとは，$\kappa$上の非自明な$\kappa$完備測度が存在することを言う．
 		\end{enumerate}
 	\end{defi}
+
+	定義より、可測基数は実数値可測基数である。
 
 	\begin{lem}
 		$\kappa$を次を満たす\.最\.小\.の基数とする：非単項$\sigma$-完備な超フィルターが存在する．
@@ -334,6 +337,94 @@
 
 	補題\label{lem:continuum}の(1)の主張の結論には「原子なし」が含まれていなかったが，これは実際には「原子なし」と結論付けられる．なぜなら，原子があると$\kappa$は可測基数となるが，補題\ref{lem:measisinacc}より，それは$\kappa \le 2^{\aleph_0}$と相容れないからだ．
 	
+	\begin{defi}
+		$(\aleph_1, \aleph_0)$-Ulam行列とは、$\omega_1$の部分集合の族$\seq{ A_{\alpha, n} : \alpha \in \omega_1, n \in \omega }$であって、次次の2条件を満たすものである。
+		\begin{enumerate}
+			\item 各$n \in \omega$と異なる$\alpha, \beta \in \omega_1$について$A_{\alpha,n} \cap A_{\beta,n} = \emptyset$である。
+			\item 各$\alpha \in \omega_1$について、集合$\omega_1 \setminus \bigcup_{n \in \omega} A_{\alpha,n}$はたかだか可算集合である。
+		\end{enumerate}
+	\end{defi}
+	
+	\[
+	\tikz[scale=0.8]{
+		\draw[->] (0, 0) -> (5, 0) node[right] {$\omega$};
+		\draw[->] (0, 0) -> (0, -7.5) node[below] {$\omega_1$};
+		\foreach \x in {1, 2, 3, 4, 5, 7, 8} {
+			\draw (\x*0.5,-3) circle (0.2);
+		}
+		\foreach \y in {1, 2, ..., 14} {
+			\draw (3, -\y*0.5) circle (0.2);
+		}
+		\node at (4.3, -3) [right] {$\cdots$ $\omega_1$をほとんど被覆};
+		\node at (3, -7.5) {$\vdots$};
+		\node at (3, -8) {互いに素};
+		\draw (-0.2, -3) node[left] {$\alpha$} -- (0.2, -3);
+		\draw (3, -0.2) node[above=0.4cm] {$n$} -- (3, 0.2);
+		\draw [bend right = 20] (3+0.707*0.2,-3+0.707*0.2) to (3.7,-2) node[above] {$A_{\alpha,n}$};
+	}
+	\]
+	
+	\begin{lem}
+		$(\aleph_1, \aleph_0)$-Ulam行列は存在する。
+	\end{lem}
+	\begin{proof}
+		各$\xi \in \omega_1$に対して$f_\xi \colon \omega \to \omega_1$を$\xi \subset \range(f_\xi)$なるものとする。
+		集合 $A_{\alpha,n}$を
+		\[
+			\xi \in A_{\alpha,n} \iff f_\xi(n) = \alpha
+		\]
+		と定める。
+		
+		$\xi \in A_{\alpha,n} \cap A_{\beta,n}$なら$\alpha = f_\xi(n) = \beta$となるので、Ulam行列の条件(1)が成り立っていることがわかる。
+		
+		$\alpha \in \omega_1$とする。
+		$\xi > \alpha$に対して、$f_\xi$の取り方より、$f_\xi(n) = \alpha$となる$n \in \omega$が存在する。
+		よって、
+		\[
+		[\alpha+1, \omega_1) \subseteq \bigcup_{n \in \omega} A_{\alpha,n}
+		\]
+		なので条件(2)も成り立っている。
+	\end{proof}
+	
+	\begin{prob}
+		$(\aleph_1, \aleph_0)$-Ulam行列の定義において、「各行は可算集合を除いてほとんど$\omega_1$を覆っている」という条件を「各行は$\omega_1$を(完全に)覆っている」と変更したバージョンは存在しないことを示せ。
+	\end{prob}
+	
+	\begin{lem}
+		$\omega_1$上の$\sigma$完備$\sigma$飽和的イデアルは存在しない。
+		特に$\omega_1$上の非自明$\sigma$加法的測度は存在しない。
+	\end{lem}
+	\begin{proof}
+		そのようなイデアル$I$が存在したと仮定する。
+		また、$\seq{ A_{\alpha, n} : \alpha \in \omega_1, n \in \omega }$を$(\aleph_1, \aleph_0)$-Ulam行列とする。
+		$I$の$\sigma$完備性とUlam行列の条件(2)より、各$\alpha$について自然数$n_\alpha$があって、$A_{\alpha,n}$は$I$-正である。
+		したがって、鳩の巣原理より、$W \subset \omega_1$, $\abs{W} = \aleph_1$, $n \in \omega$があって、すべての$\alpha \in W$について$n_\alpha = n$である。
+		すると$\{ A_{\alpha,n} : \alpha \in W \}$は互いに素　(by Ulam行列の条件(1)な非可算な$I$-正集合の族となる。これは$I$の$\sigma$飽和性に矛盾する。
+	\end{proof}
+
+	以上の$\omega_1$を一般の後続基数に一般化できる。証明は同様なので省略する。
+	
+	\begin{defiandlem}\label{dl:lambdaplusulam}
+		$\lambda$を基数とする。
+		\begin{enumerate}
+			\item $(\lambda^+, \lambda)$-Ulam行列とは、$\lambda^+$の部分集合の族$\seq{ A_{\alpha, \eta} : \alpha \in \lambda^+, \eta \in \lambda }$であって、次次の2条件を満たすものである。
+			\begin{enumerate}
+				\item 各$\eta \in \lambda$と異なる$\alpha, \beta \in \lambda^+$について$A_{\alpha,\eta} \cap A_{\beta,\eta} = \emptyset$である。
+				\item 各$\alpha \in \lambda^+$について、集合$\lambda^+ \setminus \bigcup_{\eta \in \lambda} A_{\alpha,\eta}$は$\lambda$以下の濃度を持つ。
+			\end{enumerate}
+			\item $(\lambda^+, \lambda)$-Ulam行列は存在する。
+			\item $\lambda^+$上の$\lambda^+$完備$\sigma$飽和的イデアルは存在しない。
+		\end{enumerate}
+	\end{defiandlem}
+
+	\begin{cor}
+		任意の実数値可測基数は、弱到達不能基数である。
+	\end{cor}
+	\begin{proof}
+		$\kappa$を実数値可測基数とする。
+		正則なことは補題\ref{lem:measisinacc}と同様の証明でよい。
+		後続基数なことは、定義と補題\ref{dl:lambdaplusulam}から分かる。
+	\end{proof}
 	
 	\section{正規フィルター}
 	
