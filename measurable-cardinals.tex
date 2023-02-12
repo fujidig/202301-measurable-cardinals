@@ -154,7 +154,7 @@
 \newenvironment{claimproof}[1]{\par\noindent$\because$) \space#1}{\hfill //}
 
 \usepackage[backend=biber,style=alphabetic,sorting=nty,doi=false,isbn=false,url=false,eprint=true]{biblatex}
-%\addbibresource{oracle-cc.bib}
+\addbibresource{measurable-cardinals.bib}
 \renewbibmacro{in:}{}
 
 \title{\vspace{-2cm} \HUGE 可測基数ノート}
@@ -170,39 +170,58 @@
 	
 	\tableofcontents
 	
+	\vspace{1cm}
 	
-	\section{可測基数の初歩およびUlamの定理の証明}
+	本稿の内容はほぼJechのテキスト\cite{jech2006set}を参考にしている.
+	
+	\section{可測基数の初歩}
+	
+	\begin{defi}
+		$S$を無限集合とする． $S$上の(一様かつ$\sigma$加法的な確率)\textbf{測度}とは$\mu \colon \Pow(S) \to [0, 1]$であって，次を満たすものである：
+			\begin{enumerate}
+				\item $\mu(\emptyset) = 0, \mu(S) = 1$
+				\item $X \subset Y \subset S$なら，$\mu(X) \le \mu(Y)$
+				\item (一様性) 任意の$s \in S$について$\mu({s}) = 0$
+				\item ($\sigma$加法性) $X_n, n \in \omega$が互いに素な$S$の部分集合たちであれば，
+				\[
+				\mu\left(\bigcup_{n \in \omega} X_n\right) = \sum_{n \in \omega} \mu(X_n). 
+				\]
+			\end{enumerate}
+	\end{defi}
+
+	測度論で扱う測度は$S$上のある$\sigma$加法族を定義域とするものであったが，ここで扱う測度は定義域が$\Pow(S)$なことに注意しよう．
+
+	\begin{defi}
+		$\mu$を$S$上の測度とする．$A \subset S$が\textbf{原子}であるとは，$\mu(A) > 0$かつ任意の$X \subset A$に対して$\mu(X) = 0$または$\mu(X) = \mu(A)$となるものである．
+		原子が存在しない測度を原子なしの測度という．
+	\end{defi}
 	
 	\begin{defi}
 		\begin{enumerate}
-			\item 基数$\kappa$が\textbf{可測基数}であるとは，$\kappa$上の$\kappa$-完備な非単項超フィルターが存在することを言う．
-			\item 基数$\kappa$が\textbf{実数値可測基数}であるとは，$\kappa$上の非自明な$\kappa$完備測度が存在することを言う．
+			\item 基数$\kappa$が\textbf{可測基数}であるとは，$\kappa$上の$\kappa$完備な非単項超フィルターが存在することを言う．
+			\item 基数$\kappa$が\textbf{実数値可測基数}であるとは，$\kappa$上の$\kappa$加法的測度が存在することを言う．
 		\end{enumerate}
 	\end{defi}
 
-	定義より、可測基数は実数値可測基数である。
+	$S$上の非単項超フィルターを考えることと，$S$上の値域が$\{0, 1\}$である(つまり，2値である)測度を考えることは同じである．
+	
+	実際，非単項超フィルター$U$に対して
+	\[\mu(X) = \begin{cases}1 & (X \in U)\\ 0 & (X \not \in U) \end{cases}\]
+	で定義される測度を対応される写像と，2値測度$\mu$に対して非単項超フィルター
+	\[U = \mu^{-1}\{1\}\]
+	を対応させる写像は互いの逆写像である．
+	
+	また，この対応において，超フィルターが$\kappa$完備なことと測度が$\kappa$加法的なことが対応する．
+	よって，可測基数は実数値可測基数である．
+	
+	\begin{defi}
+		集合$S$上のイデアル$I$で\textbf{$\sigma$飽和的}であるとは，$I$に属さない$S$の部分集合族で互いに素なものはどれも，族の濃度が可算であることを意味する．
+	\end{defi}
 
-	\begin{lem}
-		$\kappa$を次を満たす\.最\.小\.の基数とする：非単項$\sigma$-完備な超フィルターが存在する．
-		$U$をそのような超フィルターの一つとする．
-		このとき，$U$は$\kappa$-完備である．
-	\end{lem}
-	\begin{proof}
-		$U$が$\kappa$-完備でないと仮定する．
-		すると$\kappa$の分割$\{ X_\alpha : \alpha < \gamma \}$があって，$\gamma < \kappa$かつ各$X_\alpha$は$U$の意味で小さい．
-		関数$f \colon \kappa \to \gamma$を次で定める：
-		\[
-			f(x) = \alpha \iff x \in X_\alpha.
-		\]
-		つまり，各入力$x < \kappa$について，$x$が何番目のピースに属しているかを返す関数である．
-		$\gamma$上の超フィルター$D$を
-		\[
-			D = \{ Z \subset \gamma : f^{-1}(Z) \in U \}
-		\]
-		で定める．$U$が$\sigma$完備なので，$D$も$\sigma$完備である．
-		$D$は非単項でもある：なぜなら，各$\alpha < \gamma$について$f^{-1}\{\alpha\} = X_\alpha \not \in U$より$\alpha \not \in D$だからである．
-		したがって，$D$は$\gamma$上の単項$\sigma$-完備な超フィルターだが，$\gamma < \kappa$より，これは$\kappa$の最小性に矛盾．
-	\end{proof}
+	$S$上の測度$\mu$から来るイデアル$I_\mu = \mu^{-1}\{0\}$は必ず$\sigma$飽和的である．
+	なぜなら，$\mathcal{A}$が$I$に属さない (すなわち$\mu$の測度が正な)部分集合で互いに素なものとしよう．
+	このとき正の自然数$n$に対して$\mu(A) > 1/n$を満たす$A \in \mathcal{A}$は$n$個しかない．
+	よって，$\mathcal{A}$は有限集合の可算和であるから，たかだか可算濃度を持つ．
 
 	\begin{lem}\label{lem:measisinacc}
 	可測基数は到達不能基数である．
@@ -211,7 +230,7 @@
 		$\kappa$を可測基数とする．
 		
 		$\kappa$の正則性を示す．
-		$\kappa$上の$\kappa$-完備な非単項超フィルター$U$を取る．
+		$\kappa$上の$\kappa$完備な非単項超フィルター$U$を取る．
 		$\kappa$が特異だとすると，$\kappa$の共終列$\seq{\lambda_i : i < \cf(\kappa) }$でおのおのの$\lambda_i$は$\kappa$未満なものが取れる．
 		今，$\kappa = \bigcup_{i < \cf(\kappa)} \lambda_i$である．
 		左辺$\kappa$は$U$に属するが，右辺はおのおのの$\lambda_i$が$U$の意味で小さく，その$\cf(\kappa) < \kappa$個の和集合だから$U$の意味で小さい．矛盾した．
@@ -219,7 +238,7 @@
 		
 		$\kappa$の強極限性を示す．背理法で，ある$\lambda < \kappa$について，$2^\lambda \ge \kappa$だと仮定する．
 		集合$S \subset \{0, 1\}^\lambda$で$\abs{S} = \kappa$となるものを取る．
-		集合$S$上の$\kappa$-完備な非単項超フィルター$U$を取る．
+		集合$S$上の$\kappa$完備な非単項超フィルター$U$を取る．
 		各$\alpha \in \lambda$について集合$X_\alpha \subset S$を
 		\[
 		\{ f \in S : f(\alpha) = 0 \} \text{ もしくは } \{ f \in S : f(\alpha) = 1 \}
@@ -233,7 +252,10 @@
 
 	\begin{lem}
 		\begin{enumerate}
-			\item $\kappa$を次を満たす最小の基数とする: $\kappa$上の非自明かつ$\sigma$加法的な測度が存在する．
+			\item $\kappa$を次を満たす最小の基数とする：非単項$\sigma$完備な超フィルターが存在する．
+			$U$をそのような超フィルターの一つとする．
+			このとき，$U$は$\kappa$完備である．
+			\item $\kappa$を次を満たす最小の基数とする: $\kappa$上の測度が存在する．
 			$\mu$をそのような測度とする．
 			このとき測度$0$集合のイデアル$I_\mu$は$\kappa$完備である．
 			\item $\kappa$を次を満たす最小の基数とする: $\kappa$上の$\sigma$完備かつ $\sigma$飽和的イデアルが存在する．
@@ -242,7 +264,22 @@
 		\end{enumerate}
 	\end{lem}
 	\begin{proof}
-		(1). $I_\mu$が$\kappa$完備ではないと仮定する．
+		(1). 
+		$U$が$\kappa$完備でないと仮定する．
+		すると$\kappa$の分割$\{ X_\alpha : \alpha < \gamma \}$があって，$\gamma < \kappa$かつ各$X_\alpha$は$U$の意味で小さい．
+		関数$f \colon \kappa \to \gamma$を次で定める：
+		\[
+		f(x) = \alpha \iff x \in X_\alpha.
+		\]
+		つまり，各入力$x < \kappa$について，$x$が何番目のピースに属しているかを返す関数である．
+		$\gamma$上の超フィルター$D$を
+		\[
+		D = \{ Z \subset \gamma : f^{-1}(Z) \in U \}
+		\]
+		で定める．$U$が$\sigma$完備なので，$D$も$\sigma$完備である．
+		$D$は非単項でもある：なぜなら，各$\alpha < \gamma$について$f^{-1}\{\alpha\} = X_\alpha \not \in U$より$\alpha \not \in D$だからである．
+		したがって，$D$は$\gamma$上の単項$\sigma$-完備な超フィルターだが，$\gamma < \kappa$より，これは$\kappa$の最小性に矛盾．
+		(2). $I_\mu$が$\kappa$完備ではないと仮定する．
 		すると測度$0$集合の族$\{X_\alpha : \alpha < \gamma \}$で，$\gamma < \kappa$かつ，それらの和集合$X = \bigcup_{\alpha < \gamma} X_\alpha$は測度正なものがとれる．
 		$X_\alpha$たちは互いに素であると仮定しても良い．
 		$f \colon X \to \gamma$を
@@ -255,15 +292,17 @@
 		\]
 		と定める．
 		$\nu$は$\sigma$加法的である．
-		また，$\nu$は非自明である，なぜなら，各$\alpha < \gamma$について$\nu(\{\alpha\}) = \frac{\mu(X_\alpha)}{\mu(X)} = 0$だからである．
+		また，$\nu$は一様である，なぜなら，各$\alpha < \gamma$について$\nu(\{\alpha\}) = \frac{\mu(X_\alpha)}{\mu(X)} = 0$だからである．
 		これは$\kappa$の最小性に反する．
 		
-		(2)の証明は(1)と同様である．
+		(3)の証明は(1)や(2)と同様である．
 	\end{proof}
+
+	$\mu$を集合 $S$上の測度とし，$I_\mu$を測度$0$集合のイデアルとすれば，$\mu$が$\kappa$加法的なら，$I_\mu$が$\kappa$完備なことは明らかである．逆も言える：
 
 	\begin{lem}
 		$\mu$を集合 $S$上の測度とし，$I_\mu$を測度$0$集合のイデアルとする．
-		このとき，もし$I_\mu$が$\kappa$完備なら，$\mu$は$\kappa$完備である．
+		このとき，もし$I_\mu$が$\kappa$完備なら，$\mu$は$\kappa$加法的である．
 	\end{lem}
 	\begin{proof}
 		$\gamma < \kappa$とし，$\seq{X_\alpha : \alpha < \gamma}$を互いに素な$S$の部分集合の族とする．
@@ -293,7 +332,7 @@
 
 	\begin{lem}\label{lem:continuum}
 		\begin{enumerate}
-			\item ある集合上の原子なしで非自明な$\sigma$加法的な測度が存在するとき，ある基数$\kappa \le 2^{\aleph_0}$上に非自明な$\sigma$加法的な測度が存在する．
+			\item ある集合上の原子なしの測度が存在するとき，ある基数$\kappa \le 2^{\aleph_0}$上に測度が存在する．
 			\item $I$を集合$S$上の$\sigma$完備$\sigma$飽和的イデアルとする．このとき，ある$Z \subset S$に対して$I \restrict Z = \{ X \subset Z : X \in I \}$が極大イデアルであるか，または，$\sigma$完備$\sigma$飽和的イデアルがある$\kappa \le 2^{\aleph_0}$上に存在するかのどちらかが成り立つ．
 		\end{enumerate}
 	\end{lem}
@@ -311,8 +350,8 @@
 		$\{ b_\alpha : \alpha < \kappa \}$, $\kappa \le 2^{\aleph_0}$をすべての極大枝$b = \{ X_\xi : \xi < \gamma \}$であって，$\bigcap_{\xi < \gamma} X_\xi$が非空なものの枚挙とする．
 		各$\alpha < \kappa$について$Z_\alpha = \bigcap b_\alpha$とおく．
 		$\{ Z_\alpha : \alpha < \kappa \}$は$S$の測度$0$集合への分割となる 
-		($Z_\alpha$が測度$0$でないとすると，一個高さを上げることができ枝の極大性に反する; また，互いの異なる極大枝$b_\alpha$と$b_\beta$はどこかで枝分かれしているはずだから，後続ステップでの構成の仕方より，$X_\alpha \cap X_\beta = \emptyset$を得る．; $s \in S$を任意に取るとき，$s$が入っている集合を根から追跡することにより，ある$X_\alpha$に$s$が入っていることがわかる)．
-		あとは$f \colon S \to \kappa$を$f(x) = \alpha \iff x \in Z_\alpha$とおき，$\kappa$上の測度$\nu$を$\nu(Z) = \mu(f^{-1}(Z))$とおけば，$\nu$は非自明な$\sigma$加法的測度である．
+		($Z_\alpha$が測度$0$でないとすると，一個高さを上げることができ枝の極大性に反する; また，互いの異なる極大枝$b_\alpha$と$b_\beta$はどこかで枝分かれしているはずだから，後続ステップでの構成の仕方より，$X_\alpha \cap X_\beta = \emptyset$を得る; 覆っていることは$s \in S$を任意に取るとき，$s$が入っている集合を根から追跡することにより，ある$X_\alpha$に$s$が入っていることがわかるからよい)．
+		あとは$f \colon S \to \kappa$を$f(x) = \alpha \iff x \in Z_\alpha$とおき，$\kappa$上の測度$\nu$を$\nu(Z) = \mu(f^{-1}(Z))$とおけば，$\nu$は一様な$\sigma$加法的測度である．
 		
 		%$\nu$が原子なしであることを示そう．
 		%$Z$が$\nu$の原子であると仮定する．
@@ -338,10 +377,10 @@
 	補題\label{lem:continuum}の(1)の主張の結論には「原子なし」が含まれていなかったが，これは実際には「原子なし」と結論付けられる．なぜなら，原子があると$\kappa$は可測基数となるが，補題\ref{lem:measisinacc}より，それは$\kappa \le 2^{\aleph_0}$と相容れないからだ．
 	
 	\begin{defi}
-		$(\aleph_1, \aleph_0)$-Ulam行列とは、$\omega_1$の部分集合の族$\seq{ A_{\alpha, n} : \alpha \in \omega_1, n \in \omega }$であって、次次の2条件を満たすものである。
+		$(\aleph_1, \aleph_0)$-Ulam行列とは，$\omega_1$の部分集合の族$\seq{ A_{\alpha, n} : \alpha \in \omega_1, n \in \omega }$であって，次の2条件を満たすものである．
 		\begin{enumerate}
-			\item 各$n \in \omega$と異なる$\alpha, \beta \in \omega_1$について$A_{\alpha,n} \cap A_{\beta,n} = \emptyset$である。
-			\item 各$\alpha \in \omega_1$について、集合$\omega_1 \setminus \bigcup_{n \in \omega} A_{\alpha,n}$はたかだか可算集合である。
+			\item 各$n \in \omega$と異なる$\alpha, \beta \in \omega_1$について$A_{\alpha,n} \cap A_{\beta,n} = \emptyset$である．
+			\item 各$\alpha \in \omega_1$について，集合$\omega_1 \setminus \bigcup_{n \in \omega} A_{\alpha,n}$はたかだか可算集合である．
 		\end{enumerate}
 	\end{defi}
 	
@@ -365,72 +404,112 @@
 	\]
 	
 	\begin{lem}
-		$(\aleph_1, \aleph_0)$-Ulam行列は存在する。
+		$(\aleph_1, \aleph_0)$-Ulam行列は存在する．
 	\end{lem}
 	\begin{proof}
-		各$\xi \in \omega_1$に対して$f_\xi \colon \omega \to \omega_1$を$\xi \subset \range(f_\xi)$なるものとする。
+		各$\xi \in \omega_1$に対して$f_\xi \colon \omega \to \omega_1$を$\xi \subset \range(f_\xi)$なるものとする．
 		集合 $A_{\alpha,n}$を
 		\[
 			\xi \in A_{\alpha,n} \iff f_\xi(n) = \alpha
 		\]
-		と定める。
+		と定める．
 		
-		$\xi \in A_{\alpha,n} \cap A_{\beta,n}$なら$\alpha = f_\xi(n) = \beta$となるので、Ulam行列の条件(1)が成り立っていることがわかる。
+		$\xi \in A_{\alpha,n} \cap A_{\beta,n}$なら$\alpha = f_\xi(n) = \beta$となるので，Ulam行列の条件(1)が成り立っていることがわかる．
 		
-		$\alpha \in \omega_1$とする。
-		$\xi > \alpha$に対して、$f_\xi$の取り方より、$f_\xi(n) = \alpha$となる$n \in \omega$が存在する。
-		よって、
+		$\alpha \in \omega_1$とする．
+		$\xi > \alpha$に対して，$f_\xi$の取り方より，$f_\xi(n) = \alpha$となる$n \in \omega$が存在する．
+		よって，
 		\[
 		[\alpha+1, \omega_1) \subseteq \bigcup_{n \in \omega} A_{\alpha,n}
 		\]
-		なので条件(2)も成り立っている。
+		なので条件(2)も成り立っている．
 	\end{proof}
 	
 	\begin{prob}
-		$(\aleph_1, \aleph_0)$-Ulam行列の定義において、「各行は可算集合を除いてほとんど$\omega_1$を覆っている」という条件を「各行は$\omega_1$を(完全に)覆っている」と変更したバージョンは存在しないことを示せ。
+		$(\aleph_1, \aleph_0)$-Ulam行列の定義において，「各行は可算集合を除いてほとんど$\omega_1$を覆っている」という条件を「各行は$\omega_1$を(完全に)覆っている」と変更したバージョンは存在しないことを示せ．
 	\end{prob}
 	
 	\begin{lem}
-		$\omega_1$上の$\sigma$完備$\sigma$飽和的イデアルは存在しない。
-		特に$\omega_1$上の非自明$\sigma$加法的測度は存在しない。
+		$\omega_1$上の$\sigma$完備$\sigma$飽和的イデアルは存在しない．
+		特に$\omega_1$上の測度は存在しない．
 	\end{lem}
 	\begin{proof}
-		そのようなイデアル$I$が存在したと仮定する。
-		また、$\seq{ A_{\alpha, n} : \alpha \in \omega_1, n \in \omega }$を$(\aleph_1, \aleph_0)$-Ulam行列とする。
-		$I$の$\sigma$完備性とUlam行列の条件(2)より、各$\alpha$について自然数$n_\alpha$があって、$A_{\alpha,n}$は$I$-正である。
-		したがって、鳩の巣原理より、$W \subset \omega_1$, $\abs{W} = \aleph_1$, $n \in \omega$があって、すべての$\alpha \in W$について$n_\alpha = n$である。
-		すると$\{ A_{\alpha,n} : \alpha \in W \}$は互いに素　(by Ulam行列の条件(1)な非可算な$I$-正集合の族となる。これは$I$の$\sigma$飽和性に矛盾する。
+		そのようなイデアル$I$が存在したと仮定する．
+		また，$\seq{ A_{\alpha, n} : \alpha \in \omega_1, n \in \omega }$を$(\aleph_1, \aleph_0)$-Ulam行列とする．
+		$I$の$\sigma$完備性とUlam行列の条件(2)より，各$\alpha$について自然数$n_\alpha$があって，$A_{\alpha,n}$は$I$-正である．
+		したがって，鳩の巣原理より，$W \subset \omega_1$, $\abs{W} = \aleph_1$, $n \in \omega$があって，すべての$\alpha \in W$について$n_\alpha = n$である．
+		すると$\{ A_{\alpha,n} : \alpha \in W \}$は互いに素 (by Ulam行列の条件(1))な非可算な$I$-正集合の族となる．これは$I$の$\sigma$飽和性に矛盾する．
 	\end{proof}
 
-	以上の$\omega_1$を一般の後続基数に一般化できる。証明は同様なので省略する。
+	以上の$\omega_1$を一般の後続基数に一般化できる．証明は同様なので省略する．
 	
 	\begin{defiandlem}\label{dl:lambdaplusulam}
-		$\lambda$を基数とする。
+		$\lambda$を基数とする．
 		\begin{enumerate}
-			\item $(\lambda^+, \lambda)$-Ulam行列とは、$\lambda^+$の部分集合の族$\seq{ A_{\alpha, \eta} : \alpha \in \lambda^+, \eta \in \lambda }$であって、次次の2条件を満たすものである。
+			\item $(\lambda^+, \lambda)$-Ulam行列とは，$\lambda^+$の部分集合の族$\seq{ A_{\alpha, \eta} : \alpha \in \lambda^+, \eta \in \lambda }$であって，次の2条件を満たすものである．
 			\begin{enumerate}
-				\item 各$\eta \in \lambda$と異なる$\alpha, \beta \in \lambda^+$について$A_{\alpha,\eta} \cap A_{\beta,\eta} = \emptyset$である。
-				\item 各$\alpha \in \lambda^+$について、集合$\lambda^+ \setminus \bigcup_{\eta \in \lambda} A_{\alpha,\eta}$は$\lambda$以下の濃度を持つ。
+				\item 各$\eta \in \lambda$と異なる$\alpha, \beta \in \lambda^+$について$A_{\alpha,\eta} \cap A_{\beta,\eta} = \emptyset$である．
+				\item 各$\alpha \in \lambda^+$について，集合$\lambda^+ \setminus \bigcup_{\eta \in \lambda} A_{\alpha,\eta}$は$\lambda$以下の濃度を持つ．
 			\end{enumerate}
-			\item $(\lambda^+, \lambda)$-Ulam行列は存在する。
-			\item $\lambda^+$上の$\lambda^+$完備$\sigma$飽和的イデアルは存在しない。
+			\item $(\lambda^+, \lambda)$-Ulam行列は存在する．
+			\item $\lambda^+$上の$\lambda^+$完備$\sigma$飽和的イデアルは存在しない．
 		\end{enumerate}
 	\end{defiandlem}
 
 	\begin{cor}
-		任意の実数値可測基数は、弱到達不能基数である。
+		任意の実数値可測基数は，弱到達不能基数である．
 	\end{cor}
 	\begin{proof}
-		$\kappa$を実数値可測基数とする。
-		正則なことは補題\ref{lem:measisinacc}と同様の証明でよい。
-		後続基数なことは、定義と補題\ref{dl:lambdaplusulam}から分かる。
+		$\kappa$を実数値可測基数とする．
+		正則なことは補題\ref{lem:measisinacc}と同様の証明でよい．
+		後続基数でないことは，定義と補題\ref{dl:lambdaplusulam}から分かる．
 	\end{proof}
+	
+	以上より次が結論付けられる：$\ZFC$に「ある集合上の測度が存在する」という命題を加えた公理系の無矛盾性の強さは$\ZFC$より真に強い．なぜなら「ある集合上の測度が存在する」からはその測度が原子ありかなしかに応じて，到達不納基数か弱到達不能基数のどちらかが出て，どちらも$\ZFC$の無矛盾性を出すからである．
 	
 	\section{正規フィルター}
 	
-	\section{可測基数の存在と実数値可測基数の存在の無矛盾等価性}
-	
-	\section{ジェネリック超冪}
+	フィルターが\textbf{正規}であるとは，それが対角共通部分を取る操作で閉じていることであった．
+	また，$\kappa$上の$\kappa$完備な超フィルター$U$に対しては，$U$が正規であることと任意の押し下げ関数$f \colon X \to \kappa$, $X \in U$に対して，ある$Y \in U$について $f$が$Y$上で定数関数となることと同値であった．
+		
+	\begin{thm}
+		任意の可測基数の上に正規超フィルターが存在する．
+	\end{thm}
+	\begin{proof}
+		$U$を$\kappa$上の非単項$\kappa$完備超フィルターとする．$f, g \in \kappa^\kappa$に対して，
+		\[
+		f =^* g \iff \{ \alpha < \kappa : f(\alpha) = g(\alpha)\} \in U
+		\]
+		という同値関係を入れる．また，
+		\[
+		f <^* g \iff \{ \alpha < \kappa : f(\alpha) < g(\alpha)\} \in U
+		\]
+		という擬全順序関係を入れる．
+		
+		無限下降列$f_0 >^* f_1 >^* f_2 >^* \dots$は存在しない．実際，それがあれば$X_n = \{ \alpha : f_n(\alpha) > f_{n+1}(\alpha))\} \in U$だが，$U$が$\sigma$完備なので，$X = \bigcap_{n \in \omega} X_n \in U$であり，特に$X$は空でない．$\alpha \in X$を一つ取ると，順序数の無限下降列$f_0(\alpha) > f_1(\alpha) > f_2(\alpha) > \dots$ができて矛盾である．
+		
+		したがって，$<^*$は擬整列順序である．
+		
+		$f \colon \kappa \to \kappa$を次を満たす(この擬整列順序で)最小の関数とする：
+		任意の$\gamma < \kappa$に対して，$\{\alpha : f(\alpha) > \gamma \} \in U$である．
+		このような$f$は少なくとも1つ存在する．たとえば対角関数$d(\alpha) = \alpha$は条件を満たす．
+		
+		$D = f(U) = \{ X \subset \kappa : f^{-1}(X) \in U \}$とおく．
+		$D$が$\kappa$上の正規超フィルターなことを示そう．
+		
+		各$\gamma < \kappa$に対して，$f^{-1}\{\gamma\} \not \in U$である ($f^{-1}[\gamma+1, \kappa) \in U$だから)．よって，$\gamma \not \in D$なので，$D$は非単項である．
+		
+		$D$の正規性を示そう．
+		$h$を$X \in D$上の押し下げ関数とする．
+		$h$が$D$のあるメンバー上で定数なことを示さなければいけない．
+		$g \in \kappa^\kappa$を$g(\alpha) = h(f(\alpha))$で定義される関数とする．
+		$g(\alpha) < f(\alpha)$がすべての$\alpha \in f^{-1}(X)$で成り立つ．
+		よって，$g <^* f$である．
+		$f$の最小性より，ある$\gamma < \kappa$に対して $Y := \{ \alpha : g(\alpha) = \gamma\} \in U$となる．
+		したがって，$D$の定義より$f(Y) \in D$であり，また，$h$は$f(Y)$上で定数$\gamma$を取る．
+	\end{proof}
+
+	\section{宇宙$V$の超冪と，初等埋め込み}
 	
 	\nocite{*}
 	\printbibliography[title={参考文献}]
