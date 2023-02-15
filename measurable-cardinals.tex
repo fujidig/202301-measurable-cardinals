@@ -98,6 +98,7 @@
 \newcommand{\ZFC}{\mathsf{ZFC}}
 \newcommand{\CH}{\mathsf{CH}}
 \newcommand{\subsetic}{\subseteq_{\mathrm{ic}}}
+\newcommand{\crit}{\operatorname{crit}}
 \DeclareMathOperator*{\diagintr}{\triangle}
 
 \newcommand{\seq}[1]{{\langle#1\rangle}}
@@ -179,9 +180,9 @@
 	\begin{defi}
 		$S$を無限集合とする． $S$上の(一様かつ$\sigma$加法的な確率)\textbf{測度}とは$\mu \colon \Pow(S) \to [0, 1]$であって，次を満たすものである：
 			\begin{enumerate}
-				\item $\mu(\emptyset) = 0, \mu(S) = 1$
-				\item $X \subset Y \subset S$なら，$\mu(X) \le \mu(Y)$
-				\item (一様性) 任意の$s \in S$について$\mu({s}) = 0$
+				\item $\mu(\emptyset) = 0, \mu(S) = 1$.
+				\item $X \subset Y \subset S$なら，$\mu(X) \le \mu(Y)$.
+				\item (一様性) 任意の$s \in S$について$\mu(\{s\}) = 0$.
 				\item ($\sigma$加法性) $X_n, n \in \omega$が互いに素な$S$の部分集合たちであれば，
 				\[
 				\mu\left(\bigcup_{n \in \omega} X_n\right) = \sum_{n \in \omega} \mu(X_n). 
@@ -279,6 +280,7 @@
 		で定める．$U$が$\sigma$完備なので，$D$も$\sigma$完備である．
 		$D$は非単項でもある：なぜなら，各$\alpha < \gamma$について$f^{-1}\{\alpha\} = X_\alpha \not \in U$より$\alpha \not \in D$だからである．
 		したがって，$D$は$\gamma$上の単項$\sigma$-完備な超フィルターだが，$\gamma < \kappa$より，これは$\kappa$の最小性に矛盾．
+		
 		(2). $I_\mu$が$\kappa$完備ではないと仮定する．
 		すると測度$0$集合の族$\{X_\alpha : \alpha < \gamma \}$で，$\gamma < \kappa$かつ，それらの和集合$X = \bigcup_{\alpha < \gamma} X_\alpha$は測度正なものがとれる．
 		$X_\alpha$たちは互いに素であると仮定しても良い．
@@ -374,7 +376,7 @@
 		後半の主張も同様．
 	\end{proof}
 
-	補題\label{lem:continuum}の(1)の主張の結論には「原子なし」が含まれていなかったが，これは実際には「原子なし」と結論付けられる．なぜなら，原子があると$\kappa$は可測基数となるが，補題\ref{lem:measisinacc}より，それは$\kappa \le 2^{\aleph_0}$と相容れないからだ．
+	補題\ref{lem:continuum}の(1)の主張の結論には「原子なし」が含まれていなかったが，これは実際には「原子なし」と結論付けられる．なぜなら，原子があると$\kappa$は可測基数となるが，補題\ref{lem:measisinacc}より，それは$\kappa \le 2^{\aleph_0}$と相容れないからだ．
 	
 	\begin{defi}
 		$(\aleph_1, \aleph_0)$-Ulam行列とは，$\omega_1$の部分集合の族$\seq{ A_{\alpha, n} : \alpha \in \omega_1, n \in \omega }$であって，次の2条件を満たすものである．
@@ -465,7 +467,7 @@
 		後続基数でないことは，定義と補題\ref{dl:lambdaplusulam}から分かる．
 	\end{proof}
 	
-	以上より次が結論付けられる：$\ZFC$に「ある集合上の測度が存在する」という命題を加えた公理系の無矛盾性の強さは$\ZFC$より真に強い．なぜなら「ある集合上の測度が存在する」からはその測度が原子ありかなしかに応じて，到達不納基数か弱到達不能基数のどちらかが出て，どちらも$\ZFC$の無矛盾性を出すからである．
+	以上より次が結論付けられる：$\ZFC$に「ある集合上の測度が存在する」という命題を加えた公理系の無矛盾性の強さは$\ZFC$より真に強い．なぜなら「ある集合上の測度が存在する」からはその測度が原子ありかなしかに応じて，到達不能基数か弱到達不能基数のどちらかが出て，どちらも$\ZFC$の無矛盾性を出すからである．
 	
 	\section{正規フィルター}
 	
@@ -509,8 +511,36 @@
 		したがって，$D$の定義より$f(Y) \in D$であり，また，$h$は$f(Y)$上で定数$\gamma$を取る．
 	\end{proof}
 
-	\section{宇宙$V$の超冪と，初等埋め込み}
+	\section{宇宙$V$の超冪と初等埋め込み}
 	
+	\begin{thm}
+		可測基数が存在することと$V = L$は両立しない．
+	\end{thm}
+	\begin{proof}
+		可測基数が存在し，かつ$V = L$だと仮定する．
+		最小の可測基数を$\kappa$とし，$\kappa$上の非単項$\kappa$完備超フィルターを$U$とする．
+		$j \colon V \to M$を$U$から生じる初等埋め込みとする．
+		今， $V = L$を仮定しているので，$L$の内部モデルとしての最小性により$M = V = L$である．
+		\[V \models \text{$\kappa$は最小の可測基数}\]
+		と$j$の初等性により
+		\[V \models \text{$j(\kappa)$は最小の可測基数}\]
+		である．
+		よって，$j(\kappa) = \kappa$とならないといけないが，これは$j(\kappa) > \kappa$であったことに矛盾．
+	\end{proof}
+	
+	\begin{thm}
+		$j \colon V \to M$を非自明な初等埋め込みとする．
+		このとき，可測基数が存在する．
+	\end{thm}
+	\begin{proof}
+		$\kappa = \crit(j)$とおく．$\kappa$が可測基数なことを示す．
+		\[
+		D = \{ X \subset \kappa : \kappa \in j(X) \}
+		\]
+		とおく．
+		$D$が非単項$\kappa$完備超フィルターなことを示す．
+	\end{proof}
+		
 	\nocite{*}
 	\printbibliography[title={参考文献}]
 	
