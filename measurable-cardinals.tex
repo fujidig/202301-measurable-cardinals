@@ -100,6 +100,7 @@
 \newcommand{\subsetic}{\subseteq_{\mathrm{ic}}}
 \newcommand{\crit}{\operatorname{crit}}
 \newcommand{\Ult}{\operatorname{Ult}}
+\newcommand{\ext}{\operatorname{ext}}
 \DeclareMathOperator*{\diagintr}{\triangle}
 
 \newcommand{\seq}[1]{{\langle#1\rangle}}
@@ -333,7 +334,7 @@
 		(3)の証明は(1)や(2)と同様である．
 	\end{proof}
 	
-	$\mu$を集合 $S$上の測度とし，$I_\mu$を測度$0$集合のイデアルとすれば，$\mu$が$\kappa$加法的なら，$I_\mu$が$\kappa$完備なことは明らかである．逆も言える：
+	$\mu$を集合$S$上の測度とし，$I_\mu$を測度$0$集合のイデアルとすれば，$\mu$が$\kappa$加法的なら，$I_\mu$が$\kappa$完備なことは明らかである．逆も言える：
 	
 	\begin{lem}
 		$\mu$を集合 $S$上の測度とし，$I_\mu$を測度$0$集合のイデアルとする．
@@ -560,7 +561,7 @@
 	$f, g \colon S \to V$に対して，$[f] \in^* [g] \iff f \in^* g$と定義する．これはwell-definedである．
 	
 	$\Ult = \Ult_U(V)$をすべての$[f]$ (ただし$f \colon S \to V$)全体のなすクラスとする．
-	構造$\Ult = (\Ult, \in^*)$を考える．通常のモデル理論におけるŁośの定理は宇宙の超冪でも成り立つことが確認できる：
+	構造$\Ult = (\Ult, \in^*)$を考える．これを宇宙$V$の\textbf{超冪}という．通常のモデル理論におけるŁośの定理は宇宙の超冪でも成り立つことが確認できる：
 	\[
 	\Ult \models \varphi([f_1], \dots, [f_n]) \iff \{ x \in S : \varphi(f_1(x), \dots, f_n(x)) \} \in U.
 	\]
@@ -571,8 +572,35 @@
 	\[
 	\Ult \models \varphi(j(a_1), \dots, j(a_n)) \iff \{ x \in S : \varphi(a_1, \dots, a_n) \} \in U.
 	\]
-	を得る．つまり，モデル理論で使っていた用語を拝借すると，$j \colon V \to \Ult$は初等埋め込みである．
+	を得る．つまり，モデル理論で使っていた用語を拝借すると，$j \colon V \to \Ult$は\textbf{初等埋め込み}である．
 
+	超冪がwell-foundedである状況を考察する．
+	set-likeであることは常に成り立つ：つまり任意の$f$について
+	\[
+	\ext(f) = \{ [g] : g \in^* f \}
+	\]
+	は常に集合である．なぜなら，$g \in^* f$なる$g$を考えるとある$h =^* g$であってすべての$x \in S$で$h(x) \in f(x)$となるものをとれる．この$h$はランクが$f$以下である．よって$\rank([g]) \le \rank(f) + 1$となるので，$\ext(f)$は集合である．
+	
+	\begin{lem}
+		$U$が$\sigma$完備な超フィルターなら，$(\Ult, \in^*)$はwell-foundedである．	
+	\end{lem}
+	\begin{proof}
+		$\Ult$の無限$\in^*$下降列がないことを示せば良い．
+		もしあったとする：$[f_0] \ni^* [f_1] \in^* \ni \dots$．
+		すると各$n$について集合
+		\[
+			X_n := \{ x \in S : f_{n+1}(x) \in f_n(x) \}
+		\]
+		は$U$に属する．$U$の$\sigma$完備性より
+		\[
+			X = \bigcap_{n \in \omega} X_n
+		\]
+		も$U$に属し，特に空でない．そこから元$x \in X$を一つ取ると，
+		\[
+		f_0(x) \ni f_1(x) \ni f_2(x) \ni \dots
+		\]
+		となり，整楚性公理に反する．
+	\end{proof}
 	
 	
 	\begin{thm}
