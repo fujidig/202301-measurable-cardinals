@@ -158,7 +158,39 @@
 \addbibresource{measurable-cardinals.bib}
 \renewbibmacro{in:}{}
 
-\title{\vspace{-2cm} \HUGE 可測基数ノート}
+
+\usepackage{titling}
+\renewcommand\maketitlehooka{
+	\vspace{-1.5cm}
+	\noindent\vrule height 2.5pt width \textwidth
+}
+\pretitle{
+	\begin{center}
+		\Huge\bfseries
+	\vspace{-0.5cm}
+}
+\posttitle{
+	\end{center}
+}
+\preauthor{
+	\begin{flushright}
+		\large
+		\vspace{-0.5cm}
+}
+\postauthor{
+	\end{flushright}
+}
+\predate{
+	\begin{flushright}
+		\large
+		\vspace{-0.5cm}
+	}
+\postdate{
+	\end{flushright}
+	\vspace{-0.5cm}\noindent\vrule height 2.5pt width \textwidth
+}
+
+\title{可測基数ノート}
 \author{でぃぐ}
 
 \begin{document}
@@ -220,7 +252,7 @@
 	\end{defi}
 
 	$S$上の測度$\mu$から来るイデアル$I_\mu = \mu^{-1}\{0\}$は必ず$\sigma$飽和的である．
-	なぜなら，$\mathcal{A}$が$I$に属さない (すなわち$\mu$の測度が正な)部分集合で互いに素なものとしよう．
+	なぜなら，$\mathcal{A}$が$I$に属さない (すなわち$\mu$の測度が正な)部分集合の族で互いに素なものとしよう．
 	このとき正の自然数$n$に対して$\mu(A) > 1/n$を満たす$A \in \mathcal{A}$は$n$個しかない．
 	よって，$\mathcal{A}$は有限集合の可算和であるから，たかだか可算濃度を持つ．
 
@@ -546,13 +578,13 @@
 　		\par \textbf{証明: } 初等性より$j(\emptyset) = \emptyset$なのでよい． \hfill //
 　		
 　		\par \textbf{主張: } $D$は共通部分で閉じている．
-　		\par \textbf{証明: } 	$X, Y \in D$とすると$\kappa \in j(X), j(Y)$．ところが初等性により$j(X \cap Y) = j(X) \cap j(Y)$なので$\kappa \in j(X \cap Y)$．よって$X \cap Y \in D$. \hfill //
+　		\par \textbf{証明: } $X, Y \in D$とすると$\kappa \in j(X), j(Y)$．ところが初等性により$j(X \cap Y) = j(X) \cap j(Y)$なので$\kappa \in j(X \cap Y)$．よって$X \cap Y \in D$. \hfill //
 　		
 　		\par \textbf{主張: } $D$は上に閉じている．
-　		\par \textbf{証明: } 	$X \in D$かつ$X \subset Y$とする．すると初等性より$j(X) \subset j(Y)$である．したがって，$\kappa \in j(X) \subset j(Y)$を得るのでよい． \hfill //
+　		\par \textbf{証明: } $X \in D$かつ$X \subset Y$とする．すると初等性より$j(X) \subset j(Y)$である．したがって，$\kappa \in j(X) \subset j(Y)$を得るのでよい． \hfill //
 　		
 　		\par \textbf{主張: } $D$は超フィルターである．
-　		\par \textbf{証明: } 	$X \not \in D$とすると$\kappa \not \in j(X)$．初等性より$j(\kappa \setminus X) = j(\kappa) \setminus j(X)$となり，右辺に$\kappa$が属しているため，$\kappa \in j(\kappa \setminus X)$．つまり，$\kappa \setminus X \in D$である． \hfill //
+　		\par \textbf{証明: } $X \not \in D$とすると$\kappa \not \in j(X)$．初等性より$j(\kappa \setminus X) = j(\kappa) \setminus j(X)$となり，右辺に$\kappa$が属しているため，$\kappa \in j(\kappa \setminus X)$．つまり，$\kappa \setminus X \in D$である． \hfill //
 　		
 　		\par \textbf{主張: } $D$は非単項．
 　		\par \textbf{証明: } 	$\alpha \in \kappa$について$j(\{\alpha\}) = \{j(\alpha)\} = \{\alpha\}$である．第一の等式は初等性，第二の等式は臨界点$\kappa$の最小性による．この集合に$\kappa$は属さない． \hfill //
