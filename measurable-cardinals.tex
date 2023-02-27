@@ -99,6 +99,7 @@
 \newcommand{\CH}{\mathsf{CH}}
 \newcommand{\subsetic}{\subseteq_{\mathrm{ic}}}
 \newcommand{\crit}{\operatorname{crit}}
+\newcommand{\Ult}{\operatorname{Ult}}
 \DeclareMathOperator*{\diagintr}{\triangle}
 
 \newcommand{\seq}[1]{{\langle#1\rangle}}
@@ -544,6 +545,35 @@
 	\end{proof}
 	
 	\section{宇宙$V$の超冪と初等埋め込み}
+	
+	$U$を集合$S$上の超フィルターとする．$f, g \colon S \to V$に対して次の二つの関係を定める：
+	\begin{align*}
+		f =^* g &\iff \{ x \in S : f(x) = g(x) \} \in U, \\
+		f \in^* g &\iff \{ x \in S : f(x) \in g(x) \} \in U.
+	\end{align*}
+
+	$S$を定義域とする関数全体は真クラスをなすため，同値関係$=^*$のおのおのの同値類は真クラスになってしまう．そこでScottのトリックを使って，次のように同値類のようなものを定義する．
+	\[
+	[f] = 	\{ g : f =^* g \land \neg (\exists h)(h = f \land \rank h < \rank g) \}
+	\]
+	こうすると各$[f]$は集合となる．
+	$f, g \colon S \to V$に対して，$[f] \in^* [g] \iff f \in^* g$と定義する．これはwell-definedである．
+	
+	$\Ult = \Ult_U(V)$をすべての$[f]$ (ただし$f \colon S \to V$)全体のなすクラスとする．
+	構造$\Ult = (\Ult, \in^*)$を考える．通常のモデル理論におけるŁośの定理は宇宙の超冪でも成り立つことが確認できる：
+	\[
+	\Ult \models \varphi([f_1], \dots, [f_n]) \iff \{ x \in S : \varphi(f_1(x), \dots, f_n(x)) \} \in U.
+	\]
+	ここに$\varphi$は集合論の(本物の)論理式．
+	特に文を考えると，$(V, \in)$と$(\Ult, \in^*)$が初等同値なことが分かる．
+	
+	また，各$a \in V$に対して定数関数$c_a \colon S \to V; c_a(x) = a$を考えて，$j(a) = [c_a]$とおくと
+	\[
+	\Ult \models \varphi(j(a_1), \dots, j(a_n)) \iff \{ x \in S : \varphi(a_1, \dots, a_n) \} \in U.
+	\]
+	を得る．つまり，モデル理論で使っていた用語を拝借すると，$j \colon V \to \Ult$は初等埋め込みである．
+
+	
 	
 	\begin{thm}
 		可測基数が存在することと$V = L$は両立しない．
