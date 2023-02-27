@@ -167,17 +167,17 @@
 \pretitle{
 	\begin{center}
 		\Huge\bfseries
-	\vspace{-0.5cm}
-}
-\posttitle{
+		\vspace{-0.5cm}
+	}
+	\posttitle{
 	\end{center}
 }
 \preauthor{
 	\begin{flushright}
 		\large
 		\vspace{-0.5cm}
-}
-\postauthor{
+	}
+	\postauthor{
 	\end{flushright}
 }
 \predate{
@@ -185,7 +185,7 @@
 		\large
 		\vspace{-0.5cm}
 	}
-\postdate{
+	\postdate{
 	\end{flushright}
 	\vspace{-0.5cm}\noindent\vrule height 2.5pt width \textwidth
 }
@@ -211,19 +211,19 @@
 	
 	\begin{defi}
 		$S$を無限集合とする． $S$上の(一様かつ$\sigma$加法的な確率)\textbf{測度}とは$\mu \colon \Pow(S) \to [0, 1]$であって，次を満たすものである：
-			\begin{enumerate}
-				\item $\mu(\emptyset) = 0, \mu(S) = 1$.
-				\item $X \subset Y \subset S$なら，$\mu(X) \le \mu(Y)$.
-				\item (一様性) 任意の$s \in S$について$\mu(\{s\}) = 0$.
-				\item ($\sigma$加法性) $X_n, n \in \omega$が互いに素な$S$の部分集合たちであれば，
-				\[
-				\mu\left(\bigcup_{n \in \omega} X_n\right) = \sum_{n \in \omega} \mu(X_n). 
-				\]
-			\end{enumerate}
+		\begin{enumerate}
+			\item $\mu(\emptyset) = 0, \mu(S) = 1$.
+			\item $X \subset Y \subset S$なら，$\mu(X) \le \mu(Y)$.
+			\item (一様性) 任意の$s \in S$について$\mu(\{s\}) = 0$.
+			\item ($\sigma$加法性) $X_n, n \in \omega$が互いに素な$S$の部分集合たちであれば，
+			\[
+			\mu\left(\bigcup_{n \in \omega} X_n\right) = \sum_{n \in \omega} \mu(X_n). 
+			\]
+		\end{enumerate}
 	\end{defi}
-
+	
 	測度論で扱う測度は$S$上のある$\sigma$加法族を定義域とするものであったが，ここで扱う測度は定義域が$\Pow(S)$なことに注意しよう．
-
+	
 	\begin{defi}
 		$\mu$を$S$上の測度とする．$A \subset S$が\textbf{原子}であるとは，$\mu(A) > 0$かつ任意の$X \subset A$に対して$\mu(X) = 0$または$\mu(X) = \mu(A)$となるものである．
 		原子が存在しない測度を原子なしの測度という．
@@ -235,7 +235,7 @@
 			\item 基数$\kappa$が\textbf{実数値可測基数}であるとは，$\kappa$上の$\kappa$加法的測度が存在することを言う．
 		\end{enumerate}
 	\end{defi}
-
+	
 	$S$上の非単項超フィルターを考えることと，$S$上の値域が$\{0, 1\}$である(つまり，2値である)測度を考えることは同じである．
 	
 	実際，非単項超フィルター$U$に対して
@@ -250,14 +250,14 @@
 	\begin{defi}
 		集合$S$上のイデアル$I$で\textbf{$\sigma$飽和的}であるとは，$I$に属さない$S$の部分集合族で互いに素なものはどれも，族の濃度が可算であることを意味する．
 	\end{defi}
-
+	
 	$S$上の測度$\mu$から来るイデアル$I_\mu = \mu^{-1}\{0\}$は必ず$\sigma$飽和的である．
 	なぜなら，$\mathcal{A}$が$I$に属さない (すなわち$\mu$の測度が正な)部分集合の族で互いに素なものとしよう．
 	このとき正の自然数$n$に対して$\mu(A) > 1/n$を満たす$A \in \mathcal{A}$は$n$個しかない．
 	よって，$\mathcal{A}$は有限集合の可算和であるから，たかだか可算濃度を持つ．
-
+	
 	\begin{lem}\label{lem:measisinacc}
-	可測基数は到達不能基数である．
+		可測基数は到達不能基数である．
 	\end{lem}
 	\begin{proof}
 		$\kappa$を可測基数とする．
@@ -282,7 +282,7 @@
 		\]
 		で定めると$X \in U$であるが，明らかに$X$は1点集合である．これは$U$の非単項性に矛盾．
 	\end{proof}
-
+	
 	\begin{lem}
 		\begin{enumerate}
 			\item $\kappa$を次を満たす最小の基数とする：非単項$\sigma$完備な超フィルターが存在する．
@@ -322,7 +322,7 @@
 		\]
 		と定め，$\gamma$上の測度$\nu$を
 		\[
-			\nu(Z) = \frac{\mu(f^{-1}(Z))}{\mu(X)} 
+		\nu(Z) = \frac{\mu(f^{-1}(Z))}{\mu(X)} 
 		\]
 		と定める．
 		$\nu$は$\sigma$加法的である．
@@ -331,9 +331,9 @@
 		
 		(3)の証明は(1)や(2)と同様である．
 	\end{proof}
-
+	
 	$\mu$を集合 $S$上の測度とし，$I_\mu$を測度$0$集合のイデアルとすれば，$\mu$が$\kappa$加法的なら，$I_\mu$が$\kappa$完備なことは明らかである．逆も言える：
-
+	
 	\begin{lem}
 		$\mu$を集合 $S$上の測度とし，$I_\mu$を測度$0$集合のイデアルとする．
 		このとき，もし$I_\mu$が$\kappa$完備なら，$\mu$は$\kappa$加法的である．
@@ -351,19 +351,19 @@
 		\]
 		を得る．$\mu$が$\sigma$加法的なので，
 		\[
-		 \mu(\bigcup_{n \in \omega} Y_n) =  \sum_{n \in \omega} \mu(Y_n) 
-		 \]
-		 である．また，$I_\mu$が$\kappa$完備なので，
-		 \[
-		 \mu(\bigcup_{\alpha < \gamma} Z_\alpha) = 0
-		 \]
-		 である．以上より，
-		 \[
-		 \mu(\bigcup_{\alpha < \gamma} X_\alpha) = \sum_{\alpha < \gamma} \mu(X_\alpha)
-		 \]
-		 を得る．
+		\mu(\bigcup_{n \in \omega} Y_n) =  \sum_{n \in \omega} \mu(Y_n) 
+		\]
+		である．また，$I_\mu$が$\kappa$完備なので，
+		\[
+		\mu(\bigcup_{\alpha < \gamma} Z_\alpha) = 0
+		\]
+		である．以上より，
+		\[
+		\mu(\bigcup_{\alpha < \gamma} X_\alpha) = \sum_{\alpha < \gamma} \mu(X_\alpha)
+		\]
+		を得る．
 	\end{proof}
-
+	
 	\begin{lem}\label{lem:continuum}
 		\begin{enumerate}
 			\item ある集合上の原子なしの測度が存在するとき，ある基数$\kappa \le 2^{\aleph_0}$上に測度が存在する．
@@ -390,7 +390,7 @@
 		%$\nu$が原子なしであることを示そう．
 		%$Z$が$\nu$の原子であると仮定する．
 		%$Y = f^{-1}(Z)$とおく．
-
+		
 		%もし$X \in T$かつ$\mu(X \cap Y) \ne 0$であって，$X_1, X_2$を$X$の$X$の2つの直後の元とするとき，$\mu(X_1 \cap Y) = 0$または$\mu(X_2 \cap Y) = 0$である．なぜなら，両方とも正だとすると，$f$の定め方より$f(X_1)$と$f(X_2)$は互いに素であって，どちらの$i < 2$についても$\nu(f(X_i) \cap Z) = \mu(f^{-1}(f(X_i) \cap Z)) > \mu(X_i \cap Y) > 0$となり，$Z$が原子であることに反するからである．
 		
 		%このことと帰納法により，$T$の各レベルにおいて一意に$X$があって，$\mu(Y \cap X) \ne 0$を満たす．
@@ -407,7 +407,7 @@
 		したがって，原子なしの$\kappa$加法的測度を$\kappa$が持つとき，$\kappa \le 2^{\aleph_0}$である (結論の否定を取ると，$\kappa \ge (2^{\aleph_0})^+$だが，これと$\kappa$加法性より$(2^{\aleph_0})^+$加法性が出るから)．
 		後半の主張も同様．
 	\end{proof}
-
+	
 	補題\ref{lem:continuum}の(1)の主張の結論には「原子なし」が含まれていなかったが，これは実際には「原子なし」と結論付けられる．なぜなら，原子があると$\kappa$は可測基数となるが，補題\ref{lem:measisinacc}より，それは$\kappa \le 2^{\aleph_0}$と相容れないからだ．
 	
 	\begin{defi}
@@ -444,7 +444,7 @@
 		各$\xi \in \omega_1$に対して$f_\xi \colon \omega \to \omega_1$を$\xi \subset \range(f_\xi)$なるものとする．
 		集合 $A_{\alpha,n}$を
 		\[
-			\xi \in A_{\alpha,n} \iff f_\xi(n) = \alpha
+		\xi \in A_{\alpha,n} \iff f_\xi(n) = \alpha
 		\]
 		と定める．
 		
@@ -474,7 +474,7 @@
 		したがって，鳩の巣原理より，$W \subset \omega_1$, $\abs{W} = \aleph_1$, $n \in \omega$があって，すべての$\alpha \in W$について$n_\alpha = n$である．
 		すると$\{ A_{\alpha,n} : \alpha \in W \}$は互いに素 (by Ulam行列の条件(1))な非可算な$I$-正集合の族となる．これは$I$の$\sigma$飽和性に矛盾する．
 	\end{proof}
-
+	
 	以上の$\omega_1$を一般の後続基数に一般化できる．証明は同様なので省略する．
 	
 	\begin{defiandlem}\label{dl:lambdaplusulam}
@@ -489,7 +489,7 @@
 			\item $\lambda^+$上の$\lambda^+$完備$\sigma$飽和的イデアルは存在しない．
 		\end{enumerate}
 	\end{defiandlem}
-
+	
 	\begin{cor}
 		任意の実数値可測基数は，弱到達不能基数である．
 	\end{cor}
@@ -505,7 +505,7 @@
 	
 	フィルターが\textbf{正規}であるとは，それが対角共通部分を取る操作で閉じていることであった．
 	また，$\kappa$上の$\kappa$完備な超フィルター$U$に対しては，$U$が正規であることと任意の押し下げ関数$f \colon X \to \kappa$, $X \in U$に対して，ある$Y \in U$について $f$が$Y$上で定数関数となることと同値であった．
-		
+	
 	\begin{thm}
 		任意の可測基数の上に正規超フィルターが存在する．
 	\end{thm}
@@ -542,7 +542,7 @@
 		$f$の最小性より，ある$\gamma < \kappa$に対して $Y := \{ \alpha : g(\alpha) = \gamma\} \in U$となる．
 		したがって，$D$の定義より$f(Y) \in D$であり，また，$h$は$f(Y)$上で定数$\gamma$を取る．
 	\end{proof}
-
+	
 	\section{宇宙$V$の超冪と初等埋め込み}
 	
 	\begin{thm}
@@ -570,35 +570,39 @@
 		D = \{ X \subset \kappa : \kappa \in j(X) \}
 		\]
 		とおく．$D$が非単項$\kappa$完備超フィルターなことを示す．
-　		
-　		\par \textbf{主張: } $\kappa \in D$.
-　		\par \textbf{証明: } $\kappa < j(\kappa)$なのでよい． \hfill //
-　		
-　		\par \textbf{主張: } $\emptyset\not \in D$.
-　		\par \textbf{証明: } 初等性より$j(\emptyset) = \emptyset$なのでよい． \hfill //
-　		
-　		\par \textbf{主張: } $D$は共通部分で閉じている．
-　		\par \textbf{証明: } $X, Y \in D$とすると$\kappa \in j(X), j(Y)$．ところが初等性により$j(X \cap Y) = j(X) \cap j(Y)$なので$\kappa \in j(X \cap Y)$．よって$X \cap Y \in D$. \hfill //
-　		
-　		\par \textbf{主張: } $D$は上に閉じている．
-　		\par \textbf{証明: } $X \in D$かつ$X \subset Y$とする．すると初等性より$j(X) \subset j(Y)$である．したがって，$\kappa \in j(X) \subset j(Y)$を得るのでよい． \hfill //
-　		
-　		\par \textbf{主張: } $D$は超フィルターである．
-　		\par \textbf{証明: } $X \not \in D$とすると$\kappa \not \in j(X)$．初等性より$j(\kappa \setminus X) = j(\kappa) \setminus j(X)$となり，右辺に$\kappa$が属しているため，$\kappa \in j(\kappa \setminus X)$．つまり，$\kappa \setminus X \in D$である． \hfill //
-　		
-　		\par \textbf{主張: } $D$は非単項．
-　		\par \textbf{証明: } 	$\alpha \in \kappa$について$j(\{\alpha\}) = \{j(\alpha)\} = \{\alpha\}$である．第一の等式は初等性，第二の等式は臨界点$\kappa$の最小性による．この集合に$\kappa$は属さない． \hfill //
-　		
-　		\par \textbf{主張: } $D$は$\kappa$完備．
-　		\par \textbf{証明: } 	$\bar{X} = \seq{X_i : i < \gamma }$を$D$の元からなる列とする．ただし，$\gamma < \kappa$．
-　		今，初等性により$j(\bar{X}) = \seq{j(X_i) : i < j(\gamma)} = \seq{j(X_i) : i < \gamma}$である．
-　		したがって，再び初等性により$\bigcap_{i < \gamma} j(X_i) = j(\bigcap_{i < \gamma} X_i)$となる．
-　		しかし，仮定より左辺に$\kappa$が属しているため，右辺にも属する．よって，$\bigcap_{i < \gamma} X_i \in D$． \hfill //
-　		
-　		\par 以上で$D$が非単項$\kappa$完備超フィルターなことが示された．
-　
-	\end{proof}
 		
+		\par \textbf{主張: } $\kappa \in D$.
+		\par \textbf{証明: } $\kappa < j(\kappa)$なのでよい． \hfill //
+		
+		\par \textbf{主張: } $\emptyset\not \in D$.
+		\par \textbf{証明: } 初等性より$j(\emptyset) = \emptyset$なのでよい． \hfill //
+		
+		\par \textbf{主張: } $D$は共通部分で閉じている．
+		\par \textbf{証明: } $X, Y \in D$とすると$\kappa \in j(X), j(Y)$．ところが初等性により$j(X \cap Y) = j(X) \cap j(Y)$なので$\kappa \in j(X \cap Y)$．よって$X \cap Y \in D$. \hfill //
+		
+		\par \textbf{主張: } $D$は上に閉じている．
+		\par \textbf{証明: } $X \in D$かつ$X \subset Y$とする．すると初等性より$j(X) \subset j(Y)$である．したがって，$\kappa \in j(X) \subset j(Y)$を得るのでよい． \hfill //
+		
+		\par \textbf{主張: } $D$は超フィルターである．
+		\par \textbf{証明: } $X \not \in D$とすると$\kappa \not \in j(X)$．初等性より$j(\kappa \setminus X) = j(\kappa) \setminus j(X)$となり，右辺に$\kappa$が属しているため，$\kappa \in j(\kappa \setminus X)$．つまり，$\kappa \setminus X \in D$である． \hfill //
+		
+		\par \textbf{主張: } $D$は非単項．
+		\par \textbf{証明: } 	$\alpha \in \kappa$について$j(\{\alpha\}) = \{j(\alpha)\} = \{\alpha\}$である．第一の等式は初等性，第二の等式は臨界点$\kappa$の最小性による．この集合に$\kappa$は属さない． \hfill //
+		
+		\par \textbf{主張: } $D$は$\kappa$完備．
+		\par \textbf{証明: } 	$\bar{X} = \seq{X_i : i < \gamma }$を$D$の元からなる列とする．ただし，$\gamma < \kappa$．
+		今，初等性により$j(\bar{X}) = \seq{j(X_i) : i < j(\gamma)} = \seq{j(X_i) : i < \gamma}$である．
+		したがって，再び初等性により$\bigcap_{i < \gamma} j(X_i) = j(\bigcap_{i < \gamma} X_i)$となる．
+		しかし，仮定より左辺に$\kappa$が属しているため，右辺にも属する．よって，$\bigcap_{i < \gamma} X_i \in D$． \hfill //
+		
+		\par 以上で$D$が非単項$\kappa$完備超フィルターなことが示された．
+		
+	\end{proof}
+	
+	\section{ジェネリック超冪}
+	
+	\section{峻厳イデアル}
+	
 	\nocite{*}
 	\printbibliography[title={参考文献}]
 	
