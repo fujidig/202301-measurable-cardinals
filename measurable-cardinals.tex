@@ -612,6 +612,42 @@
 	
 	初等性より$j(0) = 0$かつすべての$n \in \omega$について$j(\alpha+1) = j(\alpha)+1$であるので，すべての$n \in \omega$について$j(n) = n$である．$j(\omega) = \omega$は$\omega$の定義可能性と絶対性より分かる．
 	
+	\begin{defi}
+		内部モデルへの初等埋め込み$j \colon V \to M$について，
+		\[
+		\crit(j) = \min \{ \alpha \in \Ordinals : \alpha < j(\alpha) \}
+		\]
+		とおき，$j$の\textbf{臨界点}と呼ぶ．
+	\end{defi}
+	
+	\begin{lem}
+		\begin{enumerate}
+			\item 内部モデルへの初等埋め込み$j \colon V \to M$が非自明，すなわち$j \ne \id$のとき，臨界点$\crit(j)$は存在する．
+			\item 可測基数$\kappa$とその上の$\kappa$完備非単項超フィルター$U$について$U$を使った超冪によって定まる初等埋め込み$j \colon V \to M$について，その臨界点は$\kappa$である．
+		\end{enumerate}
+	\end{lem}
+	\begin{proof}
+		(1)の証明．
+		$j(x) \ne x$なるランク最小の$x$を取る．
+		$y \in x$なら$\rank(y) < \rank(x)$なので，$x$のランク最小性より，$y = j(y)$を得る．よって，$y = j(y) \in j(x)$となる．したがって，$x \subset j(x)$．
+		したがって，$j(x) \ne x$であることと合わせると$z \in j(x) \setminus x$がとれる．
+		もし，$\rank(j(x)) = \rank(x)$なら$j(z) = z \in j(x)$となるので，初等性より$z \in x$を得て，矛盾．よって$\rank(j(x)) > \rank(x)$である．一方でランクの定義可能性と初等性と絶対性より$\rank(j(x)) = j(\rank(x))$を得るので，$j(\rank(x)) > \rank(x)$．したがって$\{ \alpha \in \Ordinals : \alpha < j(\alpha) \}$が空でないことが証明された．
+		
+		(2)の証明．
+		$\alpha < \kappa$として$j(\alpha) = \alpha$を示す．
+		$\alpha$に関する超限帰納法で示すことにすれば，任意の$\beta < \alpha$で$j(\beta) = \beta$であることを仮定して良い．
+		$[f] \in j(\alpha)$を取る．すると$U$の意味でほとんどすべての$x \in S$で$f(x) < \alpha$．
+		ここで$U$の$\kappa$完備性より，ある$\beta < \alpha$が存在して，ほとんどすべての$x \in S$で$f(x) = \beta$．
+		よって$[f] \in j(\beta)$である．帰納法の仮定より$[f] \in j(\beta) = \beta$なので，これで$j(\alpha) = \alpha$が示された．
+		
+		次に$j(\kappa) > \kappa$を示す．
+		対角関数$d(\alpha) = \alpha$を考える．
+		$\{ \alpha : d(\alpha) < \kappa \} = S \in U$なので，$[d] < j(\kappa)$である．
+		次に$\kappa \le [d]$を示す．
+		$\beta < \kappa$を任意にとる．すると$\{ \alpha : \beta < d(\alpha) \} = [\beta+1, \kappa] \in U$なので，$j(\beta) < [d]$．$j(\beta) = \beta$は証明済みなので$\beta < [d]$を得る．これで$\kappa \le [d]$が示された．
+		以上より，$\kappa \le [d] < j(\kappa)$である．
+	\end{proof}
+	
 	\begin{thm}
 		可測基数が存在することと$V = L$は両立しない．
 	\end{thm}
@@ -629,10 +665,11 @@
 	
 	\begin{thm}
 		$j \colon V \to M$を非自明な初等埋め込みとする．
-		このとき，可測基数が存在する．
+		このとき，$\crit(j)$は可測基数である．
+		特に非自明な初等埋め込みが存在するとき可測基数が存在する．
 	\end{thm}
 	\begin{proof}
-		$\kappa = \crit(j)$とおく．$\kappa$が可測基数なことを示す．
+		$\kappa = \crit(j)$とおく．
 		\[
 		D = \{ X \subset \kappa : \kappa \in j(X) \}
 		\]
