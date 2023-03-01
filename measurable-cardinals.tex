@@ -25,7 +25,7 @@
 \usepackage{enumerate}
 \usepackage[dvipdfmx]{hyperref}
 \usepackage{pxjahyper}
-\renewcommand{\baselinestretch}{1.2}
+\renewcommand{\baselinestretch}{1.1}
 
 \usetikzlibrary{positioning}
 \usetikzlibrary{calc}
@@ -706,6 +706,44 @@
 	
 	\section{ジェネリック超冪}
 	
+	\begin{lem}
+		\begin{enumerate}
+			\item 各$\gamma < \kappa$について，$j(\gamma) = \gamma$．よって$\Ordinals^N$は順序型$\kappa$の始切片を持つ．
+			\item $I$が正規ならば，$x \in \Ordinals^N$があって，$x = \kappa$である．
+			実際，$[d] = \kappa$である．ただし$d$は対角関数．
+			\item $j(\kappa) \ne \kappa$.
+		\end{enumerate}
+	\end{lem}
+	\begin{proof}
+		(1)の証明．
+		$j \upharpoonright \gamma$が$(\gamma, \in)$と$\{ y \in \Ordinals^N : y <^N j(\gamma)\}, <^N)$の間の同型写像であることを示せばよい．
+		$j \upharpoonright \gamma$の値域が$\{ y \in \Ordinals^N : y <^N j(\gamma)\}, <^N)$に含まれることは明らか．
+		順序保存性，単射性は$j$の初等性より明らか．
+		
+		全射性を示す．$y \in \Ordinals^N$で$y <^N j(\gamma)$とする．
+		$y = [f], f \in M, \dom(f) = \kappa$なる$f$を取る．
+		すると$[f] <^N j(\gamma)$より
+		\[
+		\{ \alpha : f(\alpha) < \gamma \} \in G
+		\]
+		だが，左辺は$\bigcup_{\beta < \gamma} \{\alpha : f(\alpha) = \beta \}$と書けるため，$G$の$\kappa$完備性により，ある$\beta < \kappa$について $\{\alpha : f(\alpha) = \beta\} \in G$である．よって，$y = [f] = j(\beta)$．
+		
+		(2)の証明．
+		$j \upharpoonright \kappa$が$\kappa$と$\{ y \in \Ordinals^N : y <^N [d] \}$の間の同型となることを示す．
+		$j \upharpoonright \kappa$の値域が$\{ y \in \Ordinals^N : y <^N [d] \}$に収まることは，各$\alpha \in \kappa$について$\seq{\alpha, \alpha, \alpha, \dots} \in^* \seq{0, 1, 2, \dots}$よりよい．
+		順序保存性，単射性は再び明らかである．
+		
+		全射性を示す．$[f] \in \Ordinals^N$で$[f] <^N [d]$なるものをとる．
+		すると$f$はある$G$のメンバーの上で押し下げ関数である．
+		$G$が正規なので，ある集合$X \in G$上で$f$は定数関数である．
+		その定数$\alpha < \kappa$について$j(\alpha) = [f]$を得る．
+		
+		(3)の証明．(2)の証明は全射性以外，正規性を使っていない．そこで$\range(j \restrict \kappa) \subset \{ y \in \Ordinals^N : y <^N [d] \}$は順序型$\kappa$を持つ．
+		よって，$\{ y \in \Ordinals^N : y \le^N [d] \}$は順序型$\kappa + 1$の部分集合を持つ．
+		$[d] < j(\kappa)$であるため，$\{ y \in \Ordinals^N : y <^N j(\kappa) \}$も順序型$\kappa + 1$の部分集合を持つ．
+		よって，この集合は順序型$\kappa$を持つことはない．
+	\end{proof}
+	
 	\begin{thm}[Silver]
 		$\kappa$を特異基数で$\cf(\kappa) = \omega_1$とする．また，すべての$\lambda < \kappa$で$2^\lambda = \lambda^+$と仮定する．このとき$2^\kappa = \kappa^+$．
 	\end{thm}
@@ -719,7 +757,7 @@
 		$\seq{\kappa_\alpha : \alpha < \omega_1}$を$V$の中で単調増加連続な基数の列で$\kappa$に収束するものとする．
 		$e$を$N$の中の基数とし，$e(\alpha) = \kappa_\alpha$で定められる関数によって表現されるものとする．$e^+$を$N$の中での$e$の後続基数とする．
 		
-		$x \in N$に対して$\ext(x) = \{ y \in N : y \mathrel{\varepsilon}^N x \}$とおく．これは$M[G]$の集合である．
+		$x \in N$に対して$\ext(x) = \{ y \in N : y \mathrel{\varepsilon}^N x \}$とおく．これは$V[G]$の集合である．
 		この定義より特に
 		\[
 		\ext(\Pow^N(e)) = \{ x \in N : N \models ``x \subset e" \}
