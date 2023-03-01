@@ -566,7 +566,7 @@
 	\[
 	\Ult \models \varphi([f_1], \dots, [f_n]) \iff \{ x \in S : \varphi(f_1(x), \dots, f_n(x)) \} \in U.
 	\]
-	ここに$\varphi$は集合論の(本物の)論理式．
+	ここに$\varphi$は集合論の論理式．
 	特に文を考えると，$(V, \in)$と$(\Ult, \in^*)$が初等同値なことが分かる．
 	
 	また，各$a \in V$に対して定数関数$c_a \colon S \to V; c_a(x) = a$を考えて，$j(a) = [c_a]$とおくと
@@ -705,6 +705,58 @@
 	\end{proof}
 	
 	\section{ジェネリック超冪}
+	
+	$\kappa$を非可算正則基数とし$I$を$\kappa$上のイデアルとする．
+	$I$正値集合のなす半順序集合$(I^+, \subset)$を考える：
+	\[
+	I^+ = \{ X \subset \kappa : X \not \in I \}.
+	\]
+	$G$を$(V, P)$ジェネリックフィルターとする．
+	
+	以下の補題で\textbf{$M$超フィルター}というのは次を満たす$D \subset \Pow^M(\kappa)$である：
+	\begin{enumerate}
+		\item $\emptyset \not \in D, \kappa \in D$.
+		\item $X, Y \in D$なら$X \cap Y \in D$.
+		\item $X \in D$かつ$Y \in M$で$X \subset Y$ならば，$Y \in D$.
+		\item $X \in M$が$X \subset \kappa$であるとき，$X \in D$または$\kappa \setminus X \in D$.
+	\end{enumerate}
+	
+	\begin{lem}
+		\begin{enumerate}
+			\item $G$は$\kappa$上の$V$超フィルターで$I$の双対フィルターを拡大するものである．
+			\item $V$で$I$が$\kappa$完備なら，$G$は$\kappa$完備$V$超フィルターである．
+			\item $I$が正規ならば，$G$も正規である．
+		\end{enumerate}
+	\end{lem}
+	\begin{proof}
+		(1)の証明．
+		$X$が$I$の双対フィルターの元ならば，$\{ Y \in I^+ : Y \subset X \}$は$I^+$の稠密部分集合なので，$X \in G$を得る．
+		$V$超フィルターなことの証明はやさしい．
+		
+		(2)の証明．
+		$\{ X_\alpha : \alpha < \gamma \}, \gamma < \kappa$を$V$に属する $\kappa$の分割とする．
+		すると$\{ Y \in I^+ : Y \subset X_\alpha \text{ (for some $\alpha < \gamma$)}\}$は$I^+$の稠密部分集合である (by $I$の$\kappa$完備性)．したがって，ある$X_\alpha$が$G$に属する．
+		
+		(3)の証明．
+		$X \in G$とし$f \in V$を$X$上の押し下げ関数とする．
+		すると$\{ Y \in I^+ : \text{$f$ is constant on $Y$} \}$は$X$の下で稠密である．
+		よって$f$はある$Y \in G$の上で定数である．
+	\end{proof}
+
+	これから$I$は$\kappa$上の$\kappa$完備イデアルとし，全ての一点集合を含むものとする．
+	すると$G$は$\kappa$上の非単項$\kappa$完備$M$超フィルターである．
+	$V[G]$で超冪$\Ult_G(V)$を考える．これを\textbf{ジェネリック超冪}という．
+	これは$\ZFC$のモデルだが，必ずしもwell-foundedではない．
+	
+	Łośの定理はジェネリック超冪でも成立する：
+	\[
+	\Ult_G(V) \models \varphi([f_1], \dots, [f_n]) \iff \{ \alpha \in \kappa : \varphi(f_1(\alpha), \dots, f_n(\alpha)) \} \in G.
+	\]
+	ここに$\varphi$は集合論の論理式．
+	特に初等埋め込み$j_G \colon V \to \Ult_G(V); j_G(x) = [c_x]$を得る．
+	
+	$N = \Ult_G(V)$とする．$N$の中の順序数全体$\Ordinals^N$は線形順序付けられたクラスだが，必ずしも整列しているとは言えない．しかし，次の補題は成り立つ．
+	ここで，$x \in \Ordinals^N$について$\{ y \in \Ordinals^N : y <^N x \}$が順序型$\alpha$を持つとき，記号の乱用で$x = \alpha$と書く．
 	
 	\begin{lem}
 		\begin{enumerate}
