@@ -101,6 +101,7 @@
 \newcommand{\crit}{\operatorname{crit}}
 \newcommand{\Ult}{\operatorname{Ult}}
 \newcommand{\ext}{\operatorname{ext}}
+\newcommand{\statone}{\mathsf{stat}_{\omega_1}}
 \DeclareMathOperator*{\diagintr}{\triangle}
 
 \newcommand{\seq}[1]{{\langle#1\rangle}}
@@ -705,9 +706,63 @@
 	
 	\section{ジェネリック超冪}
 	
+	\begin{thm}[Silver]
+		$\kappa$を特異基数で$\cf(\kappa) = \omega_1$とする．また，すべての$\lambda < \kappa$で$2^\lambda = \lambda^+$と仮定する．このとき$2^\kappa = \kappa^+$．
+	\end{thm}
+	\begin{proof}
+		$(\statone, \subset)$を$\omega_1$の定常集合全体が包含関係で作る半順序集合とする．
+		$G$を$(V, \statone)$ジェネリックフィルターとする．
+		$V[G]$で議論する．
+		$G$は$\omega_1^M$上の正規$\sigma$完備$M$超フィルターである．
+		$(N, \mathrel{\varepsilon}^N) = \Ult_G(V)$をジェネリック超冪とし，$j \colon V \to N$を誘導される初等埋め込みとする．
+		
+		$\seq{\kappa_\alpha : \alpha < \omega_1}$を$V$の中で単調増加連続な基数の列で$\kappa$に収束するものとする．
+		$e$を$N$の中の基数とし，$e(\alpha) = \kappa_\alpha$で定められる関数によって表現されるものとする．$e^+$を$N$の中での$e$の後続基数とする．
+		
+		$x \in N$に対して$\ext(x) = \{ y \in N : y \mathrel{\varepsilon}^N x \}$とおく．これは$M[G]$の集合である．
+		この定義より特に
+		\[
+		\ext(\Pow^N(e)) = \{ x \in N : N \models ``x \subset e" \}
+		\]
+		である．
+		
+		\par \textbf{主張A: } $\abs{\Pow^V(\kappa)} \le \abs{\ext(\Pow^N(e))}$.
+		\par \textbf{証明: } $V$の中の$X \subset \kappa$について関数$f_X$を$f_X(\alpha) = X \cap \kappa_\alpha$ ($\alpha \in \omega_1$)と定める．$f_X$が表現する$N$の元は，$N$の中で$e$の部分集合である．
+		また，$X \ne Y$なら，関数$f_X$と$f_Y$はゆくゆく異なるので，異なる$N$の元を表現する． \hfill //
+		
+		\par \textbf{主張B: } $\abs{\ext(\Pow^N(e))} = \abs{\ext(e^+)}$.
+		\par \textbf{証明: } $V$で任意の$\alpha$について$2^{\kappa_\alpha} = \kappa_\alpha^+$であることから，Łośの定理より，$N$で$2^e = e^+$が成り立つ．つまり$F \in N$がとれて，$N \models F \colon 2^e \to e^+ \text{ 全単射}$となる．
+		各$x \in \ext(\Pow^N(e))$について$y \in N$で$N \models y = F(x)$となる元を割り当てる関数を$\tilde{F} \colon \ext(\Pow^N(e)) \to \ext(e^+)$とする．これは全単射であることが確認できるので，主張が示された． \hfill //
+		
+		\par \textbf{主張C: } 任意の$a \mathrel{\varepsilon}^N e$について，$\gamma < \omega_1^V$が存在して，$a \mathrel{\varepsilon}^N j(\kappa_\gamma)$である．
+		\par \textbf{証明: } $a \mathrel{\varepsilon}^N e$を任意にとり，関数$f$が$a$を表現するとする．
+		このときある$X \in G$があって，全ての$\alpha \in X$で$f(\alpha) < \kappa_\alpha$である．
+		ここで極限順序数全体の集合はclubなので$G$に属する．よって，上で取った$X$は全ての元が極限順序数だと仮定して良い．
+		したがって，列$\seq{\kappa_\alpha : \alpha < \omega_1}$を連続で取っていたことから，$f(\alpha) < \kappa_{\gamma(\alpha)}$が，ある$\gamma(\alpha) < \alpha$について成り立つ．
+		$\gamma$は押し下げ関数だから，ある$\gamma < \omega_1^V$が存在して，ある$Y \in G$について，任意の$\alpha \in Y$で$f(\alpha) < \kappa_\gamma$となる．つまり$a \mathrel{\varepsilon}^N j(\kappa_\gamma)$を得る． \hfill //
+		
+		\par \textbf{主張D: } $\abs{\ext(e)} \le \kappa$.
+		\par \textbf{証明: } 各$\gamma < \omega_1^V$について，$\abs{j(\kappa_\gamma)} \le \abs{(\kappa_\gamma^{\aleph_1})^V} < \kappa$である．第一の不等号は$j(\kappa_\gamma)$の元というのはつねに$\kappa_\gamma$の元を値に取る$\omega_1$列で表現されるからである．よって，主張Cと合わせて，$\abs{\ext(e)} \le \kappa$を得る．  \hfill //
+		
+		\par \textbf{主張E: } $\abs{\ext(e^+)} \le \kappa^+$.
+		\par \textbf{証明: } もし，$x \mathrel{\varepsilon}^N e^+$なら，$N$の中に$x$から$e$への単射があるから，主張Bと同じ方法によって，$\ext(x)$から$\ext(e)$への単射を得る．したがって，$\ext(\kappa^+)$は全順序集合で，どの始切片もサイズたかだか$\kappa$を持つので，$\ext(\kappa^+) \le \kappa^+$を得る (\cite{jech2006set}のExercise 5.3を参照)．	
+		
+		主張A, B, Eを組み合わせると
+		\[
+			\abs{\Pow^V(\kappa)} \le \abs{\ext(\Pow^N(e))} \le \abs{\ext(e^+)} \le \kappa^+
+		\]
+		を得る．これは$V[G]$での不等式である．
+		ところが，$\abs{P} = 2^{\aleph_1} < \kappa$であるため，chain conditionにより，$V$の全ての$\kappa$以上の基数は$V[G]$でも基数である．よって
+		\[
+		\abs{\Pow^V(\kappa)}^V \le (\kappa^+)^V
+		\]
+		を得る．これが欲しかった結論である．
+	 \end{proof}
+	
 	\section{峻厳イデアル}
 	
 	\nocite{*}
 	\printbibliography[title={参考文献}]
+
 	
 \end{document}
