@@ -801,7 +801,7 @@
 		$\kappa$は$j$の像ではないので，これは矛盾．
 	\end{proof}
 
-	\begin{lem}
+	\begin{lem}\label{lem:kappaseq}
 		$U$を$\kappa$上の非単項$\kappa$完備超フィルターとし，$M = \Ult_U(V)$とし，$j \colon V \to M$を誘導される初等埋め込みとする．このとき次が成り立つ．
 		\begin{enumerate}
 			\item $M^\kappa \subset M$.すなわち$M$は$\kappa$列を取る操作で閉じている．
@@ -864,7 +864,7 @@
 		(5)の証明．各$\alpha < \lambda$について$\alpha$未満の順序数は関数$f \colon \kappa \to \alpha$によって表現されるので，$\abs{j(\alpha)} \le \abs{\alpha^\kappa} \le 2^{\abs{\alpha} \kappa} < \lambda$を得る．
 		よって(4)より$j(\lambda) = \sup_{\alpha < \lambda} j(\alpha) = \lambda$.
 	\end{proof}
-
+		
 	\begin{lem}
 		$\kappa$を可測基数とする．
 		もし$2^\kappa > \kappa^+$ならば，どんな$\kappa$上の正規$\kappa$完備非単項超フィルター$D$についても集合$\{ \alpha < \kappa : 2^\alpha > \alpha^+ \}$は$D$に属する．
@@ -873,8 +873,21 @@
 	\begin{proof}
 		$D$を$\kappa$上の正規$\kappa$完備非単項超フィルターとし，$M = \Ult_D(V)$とおく．
 		もし，$\{ \alpha < \kappa : 2^\alpha = \alpha^+ \} \in D$なら$[d] = \kappa$とŁośの定理より$2^\kappa = \kappa^+$ in $M$を得る．
-		ところが，補題??より$2^\kappa = (2^\kappa)^M$かつ$\kappa^+ = \kappa$なので，$V$で$2^\kappa = \kappa^+$である．
+		ところが，補題\ref{lem:kappaseq}より$2^\kappa = (2^\kappa)^M$かつ$\kappa^+ = (\kappa^+)^M$である．
+		ここに$\kappa^+$は集合$\kappa$に入る整列順序の上限として書けることを使って，$2^\kappa = (2^\kappa)^M$により$\kappa^+ = (\kappa^+)^M$を得る．	
+		よって，$V$で$2^\kappa = \kappa^+$である．
 	\end{proof}
+
+%	\begin{lem}
+%		$\kappa$を可測基数とする．
+%		$D$を$\kappa$上の正規$\kappa$完備非単項超フィルターとする．
+%		$j \colon V \to M$を誘導される初等埋め込みとする．
+%		$\lambda > \kappa$を強極限かつ共終数$\kappa$を持つとする．
+%		このとき$2^\lambda < j(\lambda)$.
+%	\end{lem}
+%	\begin{proof}
+%		$\cf(\lambda) = \kappa$より $j(\lambda) > \lambda$を得る (why?)．
+%	\end{proof}
 	
 	\section{ジェネリック超冪}
 	
