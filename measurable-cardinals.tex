@@ -103,6 +103,7 @@
 \newcommand{\ext}{\operatorname{ext}}
 \newcommand{\statone}{\mathsf{stat}_{\omega_1}}
 \DeclareMathOperator*{\diagintr}{\triangle}
+\DeclareMathOperator*{\diaguni}{\bigtriangledown}
 
 \newcommand{\seq}[1]{{\langle#1\rangle}}
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
@@ -515,8 +516,59 @@
 		
 	\section{正規フィルター}
 	
+	$\kappa$の部分集合の列$(X_\alpha : \alpha < \kappa)$についてその\textbf{対角共通部分}$\diagintr_{\alpha < \kappa} X_\alpha$というのは
+	\[
+	\diagintr_{\alpha < \kappa} X_\alpha = \{ \beta < \kappa : (\forall \alpha < \beta)(\beta \in X_\alpha) \}
+	\]
+	で定まっていた．その双対概念として，
+	\[
+	\diaguni_{\alpha < \kappa} X_\alpha = \{ \beta < \kappa : (\exists \alpha < \beta)(\beta \in X_\alpha) \}
+	\]
+	を\textbf{対角和集合}という．
+	
 	フィルターが\textbf{正規}であるとは，それが対角共通部分を取る操作で閉じていることであった．
-	また，$\kappa$上の$\kappa$完備な超フィルター$U$に対しては，$U$が正規であることと任意の押し下げ関数$f \colon X \to \kappa$, $X \in U$に対して，ある$Y \in U$について $f$が$Y$上で定数関数となることと同値であった．
+	イデアルが正規というのは双対フィルターが正規であること，すなわち対角和を取る操作で閉じていることを意味する．
+	$f \colon X \to \kappa$ ($X \subset \kappa$)が\textbf{押し下げ関数}であるとは，任意の$\alpha \in X$について$f(\alpha) < \alpha$となることであった．
+		
+	イデアル$I$に対して集合
+	\[
+	I^+ = \{ A \subset \kappa : A \not \in I \}
+	\]
+	の元を$I$正値集合ということにする．
+	
+	\begin{lem}
+		$I$を$\kappa$上のイデアルとする．次は同値．
+		\begin{enumerate}
+			\item $I$は正規．
+			\item 任意の$I$正値集合$S_0$と任意の$S_0$上の押し下げ関数$f$に対して，$I$正値集合$S \subset S_0$があって$f$は$S$上定数．
+		\end{enumerate}
+	\end{lem}
+	\begin{proof}
+		(1)ならば(2)はFodorの補題の証明そのままである．
+		
+		(2)ならば(1)を証明する．$I$の双対フィルターを$F$とする．
+		$(X_\alpha : \alpha < \kappa)$を$F$の元の列とする．
+		$\diagintr_{\alpha < \kappa} X_\alpha \not \in F$だとする．
+		$S = \kappa \setminus \diagintr_{\alpha < \kappa} X_\alpha$とおく．
+		$S$は$I$正値集合である．
+		$f(\alpha)$を $\xi < \alpha$であって，$\alpha \not \in X_\xi$なものとして定める (対角共通部分の定義より取れる)．
+		すると(2)より$I$正値集合$S' \subset S$と$\gamma < \kappa$がとれて，任意の$\alpha \in S'$について$f(\alpha) = \gamma$．
+		これは$f$の定義より$S' \cap X_\gamma = \emptyset$を意味する．
+		$S'$が$I$正値集合で$X_\gamma \in F$なのでこれは矛盾．
+	　\end{proof}
+	
+	したがって，$\kappa$上の超フィルター$U$に対しては，$U$が正規であることと任意の押し下げ関数$f \colon X \to \kappa$, $X \in U$に対して，ある$Y \in U$について $f$が$Y$上で定数関数となることと同値である．
+	
+	\begin{lem}
+		$\kappa$を非可算正則基数とし，$F$を$\kappa$上の正規フィルターで，任意の終切片$\{\alpha : \alpha_0 < \alpha < \kappa\}$を持っているものとする．するとすべてのclub集合は$F$の元を持つ．したがって，$F$の元はすべて定常集合である．
+	\end{lem}
+	\begin{proof}
+			まず極限順序数全体$\Lim_\kappa$は$F$の元であることに注意する：$X_\alpha = \{ \xi : \alpha + 1 < \xi < \kappa \}$の対角共通部分として書けるからである．
+			$C$をclub集合とし，$C = \{ a_\alpha : \alpha < \kappa \}$を単調増加な枚挙とする．
+			$Y_\alpha = \{ \xi : a_\alpha < \xi < \kappa \}$とおくと$\Lim_\kappa \cap \diagintr_{\alpha < \kappa} Y_\alpha \subset C$を得る．なぜなら$\beta \in \Lim_\kappa \cap \diagintr_{\alpha < \kappa} Y_\alpha$とすると
+			\[\beta = \sup_{\alpha < \beta} a_\alpha \in C \]
+			であるからである．
+	\end{proof}
 	
 	\begin{thm}
 		任意の可測基数の上に正規超フィルターが存在する．
