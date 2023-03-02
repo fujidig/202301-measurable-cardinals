@@ -259,18 +259,25 @@
 	このとき正の自然数$n$に対して$\mu(A) > 1/n$を満たす$A \in \mathcal{A}$は$n$個しかない．
 	よって，$\mathcal{A}$は有限集合の可算和であるから，たかだか可算濃度を持つ．
 	
+	\begin{lem}\label{lem:measisreg}
+		実数値可測基数 (および可測基数)は正則基数である．
+	\end{lem}
+	\begin{proof}
+		$\kappa$を実数値可測基数とする．
+		$\kappa$上の$\kappa$完備な測度$\mu$を取る．
+		$\kappa$が特異だとすると，$\kappa$の共終列$\seq{\lambda_i : i < \cf(\kappa) }$でおのおのの$\lambda_i$は$\kappa$未満なものが取れる．
+		今，$\kappa = \bigcup_{i < \cf(\kappa)} \lambda_i$である．
+		左辺$\kappa$は測度$1$だが，右辺はおのおのの$\lambda_i$が測度$0$で，その$\cf(\kappa) < \kappa$個の和集合だから測度$0$である．矛盾した．
+		なお，ここで，おのおのの$\lambda_i$が測度$0$なのは，各1点集合が測度$0$で，$\lambda_i$はその$\lambda_i < \kappa$個の和集合として書けるからである．
+	\end{proof}
+
 	\begin{lem}\label{lem:measisinacc}
 		可測基数は到達不能基数である．
 	\end{lem}
 	\begin{proof}
 		$\kappa$を可測基数とする．
 		
-		$\kappa$の正則性を示す．
-		$\kappa$上の$\kappa$完備な非単項超フィルター$U$を取る．
-		$\kappa$が特異だとすると，$\kappa$の共終列$\seq{\lambda_i : i < \cf(\kappa) }$でおのおのの$\lambda_i$は$\kappa$未満なものが取れる．
-		今，$\kappa = \bigcup_{i < \cf(\kappa)} \lambda_i$である．
-		左辺$\kappa$は$U$に属するが，右辺はおのおのの$\lambda_i$が$U$の意味で小さく，その$\cf(\kappa) < \kappa$個の和集合だから$U$の意味で小さい．矛盾した．
-		なお，ここで，おのおのの$\lambda_i$が小さいのは各1点集合が小さく，$\lambda_i$はその$\lambda_i < \kappa$個の和集合として書けるからである．
+		$\kappa$が正則なことは補題\ref{lem:measisreg}で示した．
 		
 		$\kappa$の強極限性を示す．背理法で，ある$\lambda < \kappa$について，$2^\lambda \ge \kappa$だと仮定する．
 		集合$S \subset \{0, 1\}^\lambda$で$\abs{S} = \kappa$となるものを取る．
@@ -498,7 +505,7 @@
 	\end{cor}
 	\begin{proof}
 		$\kappa$を実数値可測基数とする．
-		正則なことは補題\ref{lem:measisinacc}と同様の証明でよい．
+		正則なことは補題\ref{lem:measisreg}で示した．
 		後続基数でないことは，定義と補題\ref{dl:lambdaplusulam}から分かる．
 	\end{proof}
 	
@@ -752,7 +759,7 @@
 	\[
 	\Ult_G(V) \models \varphi([f_1], \dots, [f_n]) \iff \{ \alpha \in \kappa : \varphi(f_1(\alpha), \dots, f_n(\alpha)) \} \in G.
 	\]
-	ここに$\varphi$は集合論の論理式．
+	ここに$\varphi$は集合論の論理式で，$f_1, \dots, f_n \in V$.
 	特に初等埋め込み$j_G \colon V \to \Ult_G(V); j_G(x) = [c_x]$を得る．
 	
 	$N = \Ult_G(V)$とする．$N$の中の順序数全体$\Ordinals^N$は線形順序付けられたクラスだが，必ずしも整列しているとは言えない．しかし，次の補題は成り立つ．
@@ -835,7 +842,7 @@
 		\par \textbf{証明: } 各$\gamma < \omega_1^V$について，$\abs{j(\kappa_\gamma)} \le \abs{(\kappa_\gamma^{\aleph_1})^V} < \kappa$である．第一の不等号は$j(\kappa_\gamma)$の元というのはつねに$\kappa_\gamma$の元を値に取る$\omega_1$列で表現されるからである．よって，主張Cと合わせて，$\abs{\ext(e)} \le \kappa$を得る．  \hfill //
 		
 		\par \textbf{主張E: } $\abs{\ext(e^+)} \le \kappa^+$.
-		\par \textbf{証明: } もし，$x \mathrel{\varepsilon}^N e^+$なら，$N$の中に$x$から$e$への単射があるから，主張Bと同じ方法によって，$\ext(x)$から$\ext(e)$への単射を得る．したがって，$\ext(\kappa^+)$は全順序集合で，どの始切片もサイズたかだか$\kappa$を持つので，$\ext(\kappa^+) \le \kappa^+$を得る (\cite{jech2006set}のExercise 5.3を参照)．	
+		\par \textbf{証明: } もし，$x \mathrel{\varepsilon}^N e^+$なら，$N$の中に$x$から$e$への単射があるから，主張Bと同じ方法によって，$\ext(x)$から$\ext(e)$への単射を得る．したがって，$\ext(e^+)$は全順序集合で，どの始切片もサイズたかだか$\kappa$を持つので，$\ext(e^+) \le \kappa^+$を得る (\cite{jech2006set}のExercise 5.3を参照)．	
 		
 		主張A, B, Eを組み合わせると
 		\[
