@@ -671,7 +671,7 @@
 		よって，$j(\kappa) = \kappa$とならないといけないが，これは$j(\kappa) > \kappa$であったことに矛盾．
 	\end{proof}
 	
-	\begin{thm}
+	\begin{thm}\label{thm:elemembimpliesmeas}
 		$j \colon V \to M$を非自明な初等埋め込みとする．
 		このとき，$\crit(j)$は可測基数である．
 		特に非自明な初等埋め込みが存在するとき可測基数が存在する．
@@ -708,7 +708,37 @@
 		しかし，仮定より左辺に$\kappa$が属しているため，右辺にも属する．よって，$\bigcap_{i < \gamma} X_i \in D$． \hfill //
 		
 		\par 以上で$D$が非単項$\kappa$完備超フィルターなことが示された．
+	\end{proof}
+
+	定理\ref{thm:elemembimpliesmeas}で作った超フィルターは正規である．
+	実際，初等埋め込み$j$により$D = \{ X \subset \kappa : \kappa \in j(X) \}$と定義された超フィルター$D$が正規なことを示そう．
+	$f$を$X \in D$上の押し下げ関数とすると$D$の定義より，$\kappa \in j(\{ \alpha : f(\alpha) < \alpha \})$なので，$j(f)(\kappa) < \kappa$である．そこで$\gamma = j(f)(\kappa)$とおく．
+	このとき$\kappa \in j(\{ \alpha : f(\alpha) = \gamma \})$だから，再び$D$の定義より，$\{ \alpha : f(\alpha) = \gamma \} \in D$となる．よって，$D$は正規である．
+
+	正規性は次のように超冪の言葉で特徴づけられる．
+
+	\begin{lem}
+		$D$を$\kappa$上の非単項$\kappa$完備超フィルターとする．このとき次は同値．
+		\begin{enumerate}
+			\item $D$は正規．
+			\item $\Ult_D(V)$において $\kappa = [d]$. ここに$d$は対角関数．
+			\item $D = \{ X \subset \kappa : \kappa \in j_D(X) \}$.
+		\end{enumerate}
+	\end{lem}
+	\begin{proof}
+		(1)ならば(2)の証明．$\kappa \le [d]$は明らかなので，$[d] \le \kappa$を示す．
+		$f \in^* d$とすると$f$は押し下げ関数である．よって，仮定(1)よりある$\gamma < \kappa$があって，$[f] = \gamma$．
 		
+		(2)ならば(3)の証明．$X \subset \kappa$とする．
+		\begin{align*}
+			X \in D &\iff \{ \alpha < \kappa : \alpha \in X \} \in D \\
+			 &\iff \{ \alpha < \kappa : d(\alpha) \in X \} \in D \\
+			 &\iff [d] \in j_D(X) \text{ (Łośの定理より)}\\
+			 &\iff \kappa \in j_D(X) \text{ (仮定より)}
+		\end{align*}
+		より良い．
+		
+		(3)ならば(1)の証明はこの補題の上の注意より従う．
 	\end{proof}
 	
 	\section{ジェネリック超冪}
