@@ -758,6 +758,49 @@
 		(3)ならば(1)の証明はこの補題の上の注意より従う．
 	\end{proof}
 
+	次に，$V$から$V$への初等埋め込みは存在しないというKunenの定理を証明する．そのために補題を用意する．
+	
+	\begin{lem}\label{lem:kunenslemma}
+		$\lambda$を無限基数で$2^\lambda = \lambda^{\aleph_0}$なるものとする．
+		このとき関数$F \colon \lambda^\omega \to \lambda$が存在して，任意の$A \in [\lambda]^\lambda$と$\gamma < \lambda$について，ある$s \in A^\omega$があって，$F(s) = \gamma$である．
+	\end{lem}
+	\begin{proof}
+		$\seq{(A_\alpha, \gamma_\alpha) : \alpha < 2^\lambda}$を$[\lambda]^\lambda \times \lambda$の枚挙とする．
+		$\alpha$に関する帰納法で，$\lambda^\omega$の元の列$\seq{s_\alpha : \alpha < 2^\lambda}$を次のように定める：$\alpha$ステージにおいて，$s_\alpha \in [A_\alpha]^\lambda$かつすべての$\beta < \alpha$について$s_\alpha \ne s_\beta$である．これは$\abs{A_\alpha^\omega} = \lambda^\omega = 2^\lambda > \abs{\beta}$より取ることができる．
+		各$\alpha < 2^\lambda$について$F(s_\alpha) = \gamma_\alpha$と定める．列$\seq{s_\alpha : \alpha < 2^\lambda}$の中に現れない$s$については$F(s)$は何でもよい．
+		
+		この$F$が条件を満たす．実際，$A \in [\lambda]^\lambda$と$\gamma < \lambda$をとると，ある$\alpha < 2^\lambda$があって，$(A, \gamma) = (A_\alpha, \gamma_\alpha)$であり，$F(s_\alpha) = \gamma_\alpha$となる．
+	\end{proof}
+
+	\begin{thm}[Kunen]
+		$j \colon V \to M$が非自明 (すなわち$j \ne id$)な初等埋め込みとしたとき，$M \ne V$である．
+	\end{thm}
+	\begin{proof}
+		$j \colon V \to V$を非自明な初等埋め込みだとして矛盾を導く．
+		$\kappa = \crit(j)$とおくと$\kappa$は可測基数．
+		$\kappa_0 = \kappa, \kappa_{n+1} = j(\kappa_n)$ (for $n \in \omega$)とおくと，どの$\kappa_n$も可測基数である．
+		$\lambda = \sup_{n \in \omega} \kappa_n$とおく．
+		
+		$j(\seq{\kappa_n : n \in \omega}) = \seq{j(\kappa_n) : n \in \omega} = \seq{\kappa_{n+1} : n \in \omega}$だから$j(\lambda) = \lambda$を得る．
+		$G = \{ j(\alpha) : \alpha < \lambda \}$とおく．
+		
+		$\lambda$は可測基数の極限だから強極限である．さらに$\cf(\lambda) = \omega$なので
+		\begin{align*}
+			2^\lambda &= (2^{<\lambda})^{\cf(\lambda)} \text{ (これは一般的に成り立つ等式)} \\
+			&= \lambda^{\cf(\lambda)} \text{ (強極限性)} \\
+			&= \lambda^\omega		
+		\end{align*}
+		を得る．
+		補題\ref{lem:kunenslemma}により，$F \colon \lambda^\omega \to \lambda$がとれて，すべての$A \in [\lambda]^\lambda$について$F``A^\omega = \lambda$である．
+		$j$の初等性と$j(\omega) = \omega$と$j(\lambda) = \lambda$により，$j(F)$も同じ性質を持つ．
+		よって，上の$G$をここでの$A$に代入すると，ある$s \in G^\omega$があって， $(jF)(s) = \kappa$である．
+		
+		$G$の定義より，$s$はある$t \colon \omega \to \lambda$を使って，$s(n) = j(t(n))$ (for $n\in\omega$)と表わせる．
+		よって$s = j(t)$である．
+		したがって，$\kappa = (jF)(s) = (jF)(jt) = j(F(t))$である．
+		$\kappa$は$j$の像ではないので，これは矛盾．
+	\end{proof}
+
 	\begin{lem}
 		$\kappa$を可測基数とする．
 		もし$2^\kappa > \kappa^+$ならば，どんな$\kappa$上の正規$\kappa$完備非単項超フィルター$D$についても集合$\{ \alpha < \kappa : 2^\alpha > \alpha^+ \}$は$D$に属する．
