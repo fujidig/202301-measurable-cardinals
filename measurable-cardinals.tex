@@ -582,7 +582,7 @@
 	
 	また，各$a \in V$に対して定数関数$c_a \colon S \to V; c_a(x) = a$を考えて，$j(a) = [c_a]$とおくと
 	\[
-	\Ult \models \varphi(j(a_1), \dots, j(a_n)) \iff \{ x \in S : \varphi(a_1, \dots, a_n) \} \in U.
+	\Ult \models \varphi(j(a_1), \dots, j(a_n)) \iff V \models \varphi(a_1, \dots, a_n) 
 	\]
 	を得る．つまり，モデル理論で使っていた用語を拝借すると，$j \colon V \to \Ult$は\textbf{初等埋め込み}である．
 
@@ -659,6 +659,19 @@
 		$\beta < \kappa$を任意にとる．すると$\{ \alpha : \beta < d(\alpha) \} = [\beta+1, \kappa] \in U$なので，$j(\beta) < [d]$．$j(\beta) = \beta$は証明済みなので$\beta < [d]$を得る．これで$\kappa \le [d]$が示された．
 		以上より，$\kappa \le [d] < j(\kappa)$である．
 	\end{proof}
+	
+	内部モデルへの初等埋め込み$j \colon V \to M$は$j \ne \id$なら全射ではない．なぜなら，$\crit(j)$が$j$の像ではないからである．
+	
+	\[
+	\tikz[scale=0.8]{
+		\draw (0, 0) -- (0, 5) node[above] {$V$};
+		\draw (3, 0) -- (3, 5) node[above] {$M$};
+		
+		\fill(0,2) circle (0.05) node[left] {$\kappa$};
+		\fill(3,3.5) circle (0.05) node[right] {$j(\kappa)$};
+		\draw[->] (0,2) -- (3,3.5);
+	}
+	\]
 	
 	\begin{thm}[Scott]
 		可測基数が存在することと$V = L$は両立しない．
