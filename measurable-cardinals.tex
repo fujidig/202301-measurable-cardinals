@@ -212,7 +212,7 @@
 	
 	\section{可測基数の初歩}
 	
-	可測基数の研究は，Lebesgue測度を$\R$の冪集合全体に拡張できるかという問から出発している．本節ではその命題が$\ZFC$の無矛盾性を超えることを示す．
+	可測基数の研究は，Lebesgue測度を$\R$の冪集合全体に拡張できるかという問から出発している．本節では$\ZFC$にその命題を付け加えた公理系の無矛盾性が$\ZFC$の無矛盾性を超えることを示す．
 	
 	\begin{defi}
 		$S$を無限集合とする． $S$上の(一様かつ$\sigma$加法的な確率)\textbf{測度}とは$\mu \colon \Pow(S) \to [0, 1]$であって，次を満たすものである：
@@ -799,6 +799,70 @@
 		よって$s = j(t)$である．
 		したがって，$\kappa = (jF)(s) = (jF)(jt) = j(F(t))$である．
 		$\kappa$は$j$の像ではないので，これは矛盾．
+	\end{proof}
+
+	\begin{lem}
+		$U$を$\kappa$上の非単項$\kappa$完備超フィルターとし，$M = \Ult_U(V)$とし，$j \colon V \to M$を誘導される初等埋め込みとする．このとき次が成り立つ．
+		\begin{enumerate}
+			\item $M^\kappa \subset M$.すなわち$M$は$\kappa$列を取る操作で閉じている．
+			\item $U \not \in M$.
+			\item $2^\kappa \le (2^\kappa)^M < j(\kappa) < (2^\kappa)^+$.
+			\item $\lambda$が極限順序数のとき，$\cf(\lambda) = \kappa$ならば$j(\lambda) > \sup_{\alpha < \lambda} j(\alpha)$; $\cf(\lambda) \ne \kappa$ならば$j(\lambda) = \sup_{\alpha < \lambda} j(\alpha)$.
+			\item $\lambda > \kappa$が強極限基数かつ$\cf(\lambda) \ne \kappa$ならば$j(\lambda) = \lambda$.
+		\end{enumerate}
+	\end{lem}
+	\begin{proof}
+		(1)の証明．
+		$\seq{a_\xi : \xi < \kappa}$を$M$の元からなる$\kappa$列とする．
+		各$\xi < \kappa$について$g_\xi$を元$a_\xi$を表現する関数とする．
+		$h$を元$\kappa$を表現する関数とする．
+		
+		関数$F$で$[F] = \seq{a_\xi : \xi < \kappa}$となるものを構成する．各$\alpha < \kappa$について
+		\[
+		F(\alpha) = \seq{g_\xi(\alpha) : \xi < h(\alpha)}
+		\]
+		とおく．
+		各$\alpha$について，$F(\alpha)$は$h(\alpha)$列なので$[F]$は$\kappa$列である．
+		$\xi < \kappa$とする．$[F]$の$\xi$番目の項が$a_\xi$であることを示したい．
+		$[h] > \xi$なので，$U$の意味でほとんどすべての$\alpha$で$\xi < h(\alpha)$である．
+		そのような$\alpha$について， $F(\alpha)$の$\xi$番目の項は$g_\xi(\alpha)$である．
+		よってŁośの定理により，$[F]$の$\xi$番目が$[g_\xi]$であることを得る ($[c_\xi] = \xi$に注意)．
+		
+		(2)の証明．
+		$U \in M$と仮定する．
+		写像$e \colon \kappa^\kappa \to j(\kappa)$を$e(f) = [f]$で定める．
+		(1)より$\kappa^\kappa = \kappa^\kappa \cap M = (\kappa^\kappa)^M \in M$に注意．
+		また仮定$U \in M$があるので，$e \in M$である．
+		$e$は全射なので，$M \models \abs{j(\kappa)} \le 2^\kappa$である．これは$j(\kappa)$が$M$で到達不能基数なことに矛盾する．
+		
+		(3)の証明．(1)より$\Pow(\kappa)^M = \Pow(\kappa)$に注意する．よって$M \subset V$より
+		\begin{align*}
+		2^\kappa &= \min \{ \alpha : (\exists f)(f \colon \Pow(\kappa) \to \alpha \text{ 全射}) \} \\
+		&\le \min \{ \alpha : (\exists f \in M)(f \colon \Pow^M(\kappa) \to \alpha \text{ 全射})\} \\
+		&= (2^\kappa)^M.
+		\end{align*}
+		$\kappa < j(\kappa)$であることと$j(\kappa)$が$M$で到達不能基数なことから$(2^\kappa)^M < j(\kappa)$を得る．
+		最後に，$j(\kappa)$の元は$\kappa$から$\kappa$への関数で表現されることから$\abs{j(\kappa))} \le \kappa^\kappa = 2^\kappa$.
+		よって$j(\kappa) < 2^\kappa$.
+		
+		なお，(3)の主張は$j(\kappa)$が$V$では基数でないことを含意している．
+		
+		(4)の証明．
+		$\cf(\lambda) = \kappa$として，$\lambda = \sup_{\alpha < \kappa} \lambda_\alpha$と書く．
+		関数$f$を$f(\alpha) = \lambda_\alpha$とおく．
+		するとŁośの定理より，任意の$\alpha$について$j(\lambda_\alpha) < [f]$であることと$[f] < j(\lambda)$が分かる．
+		したがって，$\sup_{\alpha < \lambda} j(\alpha) \le [f] < j(\lambda)$.
+		
+		次に$\cf(\lambda) > \kappa$として$f$を任意の$\kappa$から$\lambda$への関数とする．
+		この$f$は共終でないので，ある$\alpha < \lambda$があって$[f] < j(\alpha)$.
+		$f \colon \kappa \to \lambda$について$[f]$は$j(\lambda)$の元すべてを動くのでこれで$j(\lambda) \le \sup_{\alpha < \lambda} j(\alpha)$が示された．逆向きの不等号は当たり前．
+		
+		最後に$\cf(\lambda) < \kappa$として，$\lambda = \sup_{\nu < \gamma} \lambda_\nu$ ($\gamma = \cf(\lambda)$)と書く．
+		すると任意の関数$f \colon \kappa \to \lambda$について$g \colon \kappa \to \gamma$があって，$f(\alpha) \le \lambda_{g(\alpha)}$ (for $\alpha < \kappa$)となる．
+		よって，$U$の$\kappa$完備性よりある$\nu < \gamma$について$[f] < j(\lambda_\nu)$となる．
+		
+		(5)の証明．各$\alpha < \lambda$について$\alpha$未満の順序数は関数$f \colon \kappa \to \alpha$によって表現されるので，$\abs{j(\alpha)} \le \abs{\alpha^\kappa} \le 2^{\abs{\alpha} \kappa} < \lambda$を得る．
+		よって(4)より$j(\lambda) = \sup_{\alpha < \lambda} j(\alpha) = \lambda$.
 	\end{proof}
 
 	\begin{lem}
