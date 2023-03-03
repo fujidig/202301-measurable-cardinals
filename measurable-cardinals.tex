@@ -213,7 +213,7 @@
 	
 	\section{可測基数の初歩}
 	
-	可測基数の研究は，Lebesgue測度を$\R$の冪集合全体に拡張できるかという問から出発している．本節では$\ZFC$にその命題を付け加えた公理系の無矛盾性が$\ZFC$の無矛盾性を超えることを示す．
+	可測基数の研究は，$[0, 1]$のLebesgue測度を$[0, 1]$の冪集合全体に拡張できるかという問から出発している．本節では$\ZFC$にその命題を付け加えた公理系の無矛盾性が$\ZFC$の無矛盾性を超えることを示す．
 	
 	\begin{defi}
 		$S$を無限集合とする． $S$上の(一様かつ$\sigma$加法的な確率)\textbf{測度}とは$\mu \colon \Pow(S) \to [0, 1]$であって，次を満たすものである：
@@ -930,16 +930,31 @@
 		よって，$V$で$2^\kappa = \kappa^+$である．
 	\end{proof}
 
-%	\begin{lem}
-%		$\kappa$を可測基数とする．
-%		$D$を$\kappa$上の正規$\kappa$完備非単項超フィルターとする．
-%		$j \colon V \to M$を誘導される初等埋め込みとする．
-%		$\lambda > \kappa$を強極限かつ共終数$\kappa$を持つとする．
-%		このとき$2^\lambda < j(\lambda)$.
-%	\end{lem}
-%	\begin{proof}
-%		$\cf(\lambda) = \kappa$より $j(\lambda) > \lambda$を得る (why?)．
-%	\end{proof}
+	\begin{lem}
+		$\kappa$を可測基数とする．
+		$D$を$\kappa$上の正規$\kappa$完備非単項超フィルターとする．
+		$j \colon V \to M$を誘導される初等埋め込みとする．
+		$\lambda > \kappa$を強極限かつ共終数$\kappa$を持つとする．
+		このとき$2^\lambda < j(\lambda)$.
+	\end{lem}
+	\begin{proof}
+		$\cf(\lambda) = \kappa$より $j(\lambda) > \lambda$を得る．
+		
+		実際，$\cf(\lambda) = \kappa$より$V \models (\exists f)(f \colon \kappa \to \lambda \text{共終})$である．
+		初等性より，$M \models (\exists f)(f \colon j(\kappa) \to j(\lambda) \text{共終})$であり，絶対性より$V \models (\exists f)(f \colon j(\kappa) \to j(\lambda) \text{共終})$である．よって，$\cf(j(\lambda)) = \cf(j(\kappa)) = j(\kappa) > \kappa$となる．したがって，$j(\lambda) = \lambda$となることはありえない．
+		
+		今，次の不等式を得る．
+		\begin{align*}
+			2^\lambda = \lambda^\kappa \le (\lambda^\kappa)^M \le (\lambda^{j(\kappa)})^M < j(\lambda).
+		\end{align*}
+		一つ目の不等式は強極限かつ$\cf(\lambda)=\kappa$により$2^\lambda = 2^{<\lambda})^{\cf(\lambda)} = \lambda^{\cf(\lambda)} = \lambda^\kappa$となるから．
+		二つ目の不等式は補題\ref{lem:kappaseq}より$\kappa$から$\lambda$への関数はすべて$M$に属するからである．
+		最後の不等式は，
+		\[
+		M \models j(\lambda) \text{ は強極限}
+		\]
+		なことと，$\lambda, j(\kappa) < j(\lambda)$なことより従う．
+	\end{proof}
 	
 	\section{ジェネリック超冪}
 	
@@ -1008,7 +1023,7 @@
 	\begin{proof}
 		(1)の証明．
 		$j \upharpoonright \gamma$が$(\gamma, \in)$と$\{ y \in \Ordinals^N : y <^N j(\gamma)\}, <^N)$の間の同型写像であることを示せばよい．
-		$j \upharpoonright \gamma$の値域が$\{ y \in \Ordinals^N : y <^N j(\gamma)\}, <^N)$に含まれることは明らか．
+		$j \upharpoonright \gamma$の値域が$\{ y \in \Ordinals^N : y <^N j(\gamma)\}$に含まれることは明らか．
 		順序保存性，単射性は$j$の初等性より明らか．
 		
 		全射性を示す．$y \in \Ordinals^N$で$y <^N j(\gamma)$とする．
