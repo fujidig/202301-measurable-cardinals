@@ -102,6 +102,7 @@
 \newcommand{\Ult}{\operatorname{Ult}}
 \newcommand{\ext}{\operatorname{ext}}
 \newcommand{\statone}{\mathsf{stat}_{\omega_1}}
+\newcommand{\Coll}{\operatorname{Coll}}
 \DeclareMathOperator*{\diagintr}{\triangle}
 \DeclareMathOperator*{\diaguni}{\bigtriangledown}
 
@@ -958,7 +959,9 @@
 	
 	\section{ジェネリック超冪}
 	
-	本稿では可測基数を使わず，強制法によるジェネリックフィルターを使った超冪を考える．その応用として，Silverの定理を証明する．
+	本節以降では強制法の知識を仮定する．
+	
+	本節では可測基数を使わず，強制法によるジェネリックフィルターを使った超冪を考える．その応用として，Silverの定理を証明する．
 	
 	$\kappa$を非可算正則基数とし$I$を$\kappa$上のイデアルとする．
 	$I$正値集合のなす半順序集合$(I^+, \subset)$を考える：
@@ -1104,6 +1107,133 @@
 	 \end{proof}
 	
 	\section{峻厳イデアル}
+	
+	$\kappa$完備イデアル$I$が\textbf{峻厳}であるとは，そのジェネリック超冪$\Ult_G(V)$が常にwell-foundedとなることを意味する．
+	
+	峻厳イデアルの存在と可測基数の存在は無矛盾等価である．本節では，その片側，可測基数の存在から峻厳イデアルの存在の無矛盾性を導く方を示す．もう一方の方向は本稿では示さない．
+	
+	\begin{thm}
+		可測基数$\kappa$が存在するとき，ジェネリック拡大が存在し，その中で，$\kappa = \aleph_1$であり，かつ$\kappa$上の峻厳イデアルが存在する．
+	\end{thm}
+	\begin{proof}
+		$\kappa$を可測基数，$D$を$\kappa$上の正規超フィルター，$j \colon V \to M$を誘導される初等埋め込みとする．
+		
+		$V$の中で，$P = \Coll(\omega, {<}\kappa)$をLevy崩壊とする．すなわち
+		\[
+		P = \{ p : \text{$p$は有限な関数で$\dom(p) \subset \kappa \times \omega$かつ任意の$(\alpha, n) \in \dom(p)$で$p(\alpha, n) < \alpha$} \}
+		\]
+		とおく．順序は逆包含である．
+		$G$を$(V, P)$ジェネリックフィルターとする．$V[G]$で$\kappa = \aleph_1$なことに注意する．
+		
+		$V[G]$の中で$I$を$D$の双対が生成するイデアルとする：
+		\[
+		I = \{ X \subset \kappa : (\exists Y \in D)(X \cap Y = \emptyset)\}.
+		\]
+		$P$の$\kappa$-chain conditionを使って，$I$が$\kappa$完備イデアルであることを示せる (ジェネリック拡大の関数$f : \lambda \to D$ ($\lambda < \kappa$)はグラウンドモデルの関数$F \colon \lambda \to [D]^{<\kappa}$で近似できることを使う)．
+		
+		$I$が峻厳であることを示す．
+		
+		そのために$S \in I^+$を任意に取る．
+		示すべきは$S' \in I^+$, $S' \subset S$があって，$S'$が「ジェネリック超冪がwell-foundedであること」を強制することである．
+		そのためには，$V[G]$のあるジェネリック拡大の中に$(V[G], I^+)$ジェネリックフィルター$W$が存在し，$S \in W$であり，$\Ult_W(V[G])$がwell-foundedであることを示せば十分である．
+		
+		各$\mu$について
+		\begin{align*}
+		P_\mu &= \{ p \in P : (\forall (\alpha, n) \in \dom(p))(\alpha < \mu) \} \\
+		P^\mu &= \{ p \in P : (\forall (\alpha, n) \in \dom(p))(\alpha \ge \mu) \}
+		\end{align*}
+		とおく．
+		
+		強制概念$j(P)$を考える．明らかに$(j(P))_\kappa = P$.
+		したがって，$j(P)$は$P \times Q$と同型である．ここに$Q = (j(P))^\kappa$である．
+		
+		$S$の名前$\dot{S} \in V^P$をとる．
+		すると$V[G]$の中で$S \in I^+$なことより$V$で
+		\[
+		\{ \alpha < \kappa : (\exists r' \in P)(r' \forces_P \alpha \in \dot{S}) \} \in D
+		\]
+		が分かる．したがって，Łośの定理よりある$r \in j(P)$があって，
+		\[
+		r \forces_{j(P)} \kappa \in j(\dot{S}).
+		\]
+		かつ$r \restrict (\omega \times \kappa) \in G$である．
+		$H$を$(V[G], Q)$ジェネリックフィルターで，$r \in G\times H$となるように取る．
+		強制法のproduct lemmaより，$G \times H$は$(V, P \times Q)$ジェネリックフィルターである．
+		
+		$V[G \times H]$の中で，$\kappa$上の$V[G]$超フィルター$W$を次のように定める：
+		\[
+		 X \in W \iff \kappa \in j(\dot{X})^{G\times H}.
+		\]
+		ここに$\dot{X} \in V^{P}$は$X$の名前である．名前のとり方によらないことを示そう．
+		\[
+		X = \dot{X}^{G} = \dot{Y}^{G}
+		\]
+		のとき，ある$p \in G$について，$p \forces \dot{X} = \dot{Y}$である．
+		これを初等埋め込み$j$で移すと，$j(p) \forces j(\dot{X}) = j(\dot{Y})$を得る．
+		ところが$j(p) = p$である．なぜなら，$p \in V_\kappa$だから．
+		よって，$p \forces j(\dot{X}) = j(\dot{Y})$を得て，$p \in G \times H$だから$V[G] \models j(\dot{X})^{G \times H} = j(\dot{Y})^{G \times H}$を得る．これで名前のとり方のよらないことが言えた．
+		$W$が$V[G]$超フィルターなことはかんたんな議論で示せる．
+		
+		さて，$\Ult_W(V[G])$がwell-foundedなことを示そう．
+		これは次の可換図式から分かる：
+		\[
+		\begin{tikzcd}
+			V[G] \arrow[r,"\tilde{j}"] \arrow[d,"j_W"] & M[G \times H]\\
+			\Ult_W(V[G]) \arrow[ur,"k"]
+		\end{tikzcd}.
+		\]
+		
+		ここで$\tilde{j}$は$j \colon V \to M$の延長で，
+		\[
+		j(x) = j(\dot{x})^{G \times H}
+		\]
+		で定義されるものである．これが名前のとり方によらないことは上と同様．初等性もかんたんに示せる．
+		
+		そして，$k$は次で定義されるものである：$f \in V[G]$が$\kappa$を定義域とする関数のときに
+		\[
+		k([f]_W) = j(f)(\kappa).
+		\]
+		これのwell-defined性，初等性も易しい．可換性もかんたんである．
+		
+		あとは，この$W$が$(V[G], I^+)$ジェネリックフィルターであることを確かめなければいけない．
+		これは，$\mathcal{X} = \{ X_i : i < \theta \}$が$V[G]$に属する$\kappa$の$I$分割であるときに，ある$i$について，$X_i \in W$であることを確かめれば十分である．
+		$\dot{\mathcal{X}}$を$\mathcal{X}$の名前，$\dot{X}_i$を$X_i$の名前とする．
+		$p \in G$と$q \in H$があって
+		\[
+		p \forces \text{$\dot{X}$が$\dot{I}$分割}
+		\]
+		かつ各$i$について
+		\[
+		(p, q) \forces \dot{X}_i \not \in \dot{W} \tag{$*$}
+		\]
+		であると仮定して，矛盾を導く．
+		$q$は$M$の中で列$\seq{q_\alpha : \alpha < \kappa}$によって表現されるとする．
+		
+		($*$)とŁośの定理と$W$の定義より，各$i$について
+		\[
+		A_i := \{ \alpha : p \cup q_\alpha \forces \alpha \not \in \dot{X}_i\} \in D \tag{$**$}
+		\]
+		となる．
+		$V[G]$の中で，集合$T$を
+		\[
+		T = \{ \alpha < \kappa : q_\alpha \in G \}
+		\]
+		で定める．
+		この$T$が$T \in I^+$かつ任意の$i$について$T \cap X_i \in I$を満たすことを示そう．それを示せば，$\mathcal{X}$が$I$分割であることに反して矛盾する．
+		
+		各$i$について，$\alpha \in T$かつ$\alpha \in A_i$なる$\alpha$を考えると，$p \cup q_\alpha \in G$となり，したがって，($**$)より，$\alpha \not \in X_i$を得る．よって，$T \cap X_i \cap A_i = \emptyset$なので，$I$の定義より$T \cap X_i \in I$を得る．
+		
+		最後に$T \in I^I$を示そう．$I$の定義より，どんな$Z \in D$についても， $T \cap Z \ne \emptyset$であることを示せばよい．
+		そこで$Z \in D$とする．このときある$\alpha \in Z$について，$q_\alpha \in G$であることを示せばよい．
+	
+		今，集合$E$を
+		\[
+		E = \{ r \in P : (\exists \alpha \in Z)(r \le q_\alpha) \}
+		\]
+		で定める．これは$P$の稠密部分集合である．実際，$r \in P$とする．このとき，$P$の定義よりある$\beta$について$r \in P_\beta$．すると$\beta$より大きな$\alpha \in Z$をとれば，$r \cup q_\alpha$は$r$の拡大となる$E$の元である．
+		
+		したがって，$E \cap G \ne \emptyset$であるので $T \cap Z \ne \emptyset$である．
+		\end{proof}
 	
 	\nocite{*}
 	\printbibliography[title={参考文献}]
