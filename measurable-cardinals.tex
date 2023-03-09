@@ -230,7 +230,7 @@
 	可測基数の研究は，$[0, 1]$のLebesgue測度を$[0, 1]$の冪集合全体に拡張できるかという問から出発している．本節では$\ZFC$にその命題を付け加えた公理系の無矛盾性が$\ZFC$の無矛盾性を超えることを示す．
 	
 	\begin{defi}
-		$S$を無限集合とする． $S$上の(一様かつ$\sigma$加法的な確率)\textbf{測度}とは$\mu \colon \Pow(S) \to [0, 1]$であって，次を満たすものである：
+		$S$を無限集合とする． $S$上の(一様かつ$\sigma$加法的な確率)\textbf{測度} (measure)とは$\mu \colon \Pow(S) \to [0, 1]$であって，次を満たすものである：
 		\begin{enumerate}
 			\item $\mu(\emptyset) = 0, \mu(S) = 1$.
 			\item $X \subset Y \subset S$なら，$\mu(X) \le \mu(Y)$.
@@ -245,14 +245,14 @@
 	測度論で扱う測度は$S$上のある$\sigma$加法族を定義域とするものであったが，ここで扱う測度は定義域が$\Pow(S)$なことに注意しよう．
 	
 	\begin{defi}
-		$\mu$を$S$上の測度とする．$A \subset S$が\textbf{原子}であるとは，$\mu(A) > 0$かつ任意の$X \subset A$に対して$\mu(X) = 0$または$\mu(X) = \mu(A)$となるものである．
-		原子が存在しない測度を原子なしの測度という．
+		$\mu$を$S$上の測度とする．$A \subset S$が\textbf{原子} (atom)であるとは，$\mu(A) > 0$かつ任意の$X \subset A$に対して$\mu(X) = 0$または$\mu(X) = \mu(A)$となるものである．
+		原子が存在しない測度を原子なし (atomless)の測度という．
 	\end{defi}
 	
 	\begin{defi}
 		\begin{enumerate}
-			\item 基数$\kappa$が\textbf{可測基数}であるとは，$\kappa$上の$\kappa$完備な非単項超フィルターが存在することを言う．
-			\item 基数$\kappa$が\textbf{実数値可測基数}であるとは，$\kappa$上の$\kappa$加法的測度が存在することを言う．
+			\item 基数$\kappa$が\textbf{可測基数} (measurable cardinal)であるとは，$\kappa$上の$\kappa$完備な非単項超フィルターが存在することを言う．
+			\item 基数$\kappa$が\textbf{実数値可測基数} (real valued measurable cardinal)であるとは，$\kappa$上の$\kappa$加法的測度が存在することを言う．
 		\end{enumerate}
 	\end{defi}
 	
@@ -268,7 +268,7 @@
 	よって，可測基数は実数値可測基数である．
 	
 	\begin{defi}
-		集合$S$上のイデアル$I$で\textbf{$\sigma$飽和的}であるとは，$I$に属さない$S$の部分集合族で互いに素なものはどれも，族の濃度が可算であることを意味する．
+		集合$S$上のイデアル$I$で\textbf{$\sigma$飽和的} ($\sigma$-saturated)であるとは，$I$に属さない$S$の部分集合族で互いに素なものはどれも，族の濃度が可算であることを意味する．
 	\end{defi}
 	
 	$S$上の測度$\mu$から来るイデアル$I_\mu = \mu^{-1}\{0\}$は必ず$\sigma$飽和的である．
@@ -530,7 +530,7 @@
 		
 	\section{正規フィルター}
 	
-	$\kappa$の部分集合の列$(X_\alpha : \alpha < \kappa)$についてその\textbf{対角共通部分}$\diagintr_{\alpha < \kappa} X_\alpha$というのは
+	$\kappa$の部分集合の列$(X_\alpha : \alpha < \kappa)$についてその\textbf{対角共通部分} (diagonal intersection)$\diagintr_{\alpha < \kappa} X_\alpha$というのは
 	\[
 	\diagintr_{\alpha < \kappa} X_\alpha = \{ \beta < \kappa : (\forall \alpha < \beta)(\beta \in X_\alpha) \}
 	\]
@@ -538,11 +538,11 @@
 	\[
 	\diaguni_{\alpha < \kappa} X_\alpha = \{ \beta < \kappa : (\exists \alpha < \beta)(\beta \in X_\alpha) \}
 	\]
-	を\textbf{対角和集合}という．
+	を\textbf{対角和集合} (diagonal union)という．
 	
-	フィルターが\textbf{正規}であるとは，それが対角共通部分を取る操作で閉じていることであった．
+	フィルターが\textbf{正規} (normal)であるとは，それが対角共通部分を取る操作で閉じていることであった．
 	イデアルが正規というのは双対フィルターが正規であること，すなわち対角和を取る操作で閉じていることを意味する．
-	$f \colon X \to \kappa$ ($X \subset \kappa$)が\textbf{押し下げ関数}であるとは，任意の$\alpha \in X$について$f(\alpha) < \alpha$となることであった．
+	$f \colon X \to \kappa$ ($X \subset \kappa$)が\textbf{押し下げ関数} (regressive function)であるとは，任意の$\alpha \in X$について$f(\alpha) < \alpha$となることであった．
 		
 	イデアル$I$に対して集合
 	\[
@@ -639,7 +639,7 @@
 	$f, g \colon S \to V$に対して，$[f] \in^* [g] \iff f \in^* g$と定義する．これはwell-definedである．
 	
 	$\Ult = \Ult_U(V)$をすべての$[f]$ (ただし$f \colon S \to V$)全体のなすクラスとする．
-	構造$\Ult = (\Ult, \in^*)$を考える．これを宇宙$V$の\textbf{超冪}という．通常のモデル理論におけるŁośの定理は宇宙の超冪でも成り立つことが確認できる：
+	構造$\Ult = (\Ult, \in^*)$を考える．これを宇宙$V$の\textbf{超冪} (ultrapower)という．通常のモデル理論におけるŁośの定理は宇宙の超冪でも成り立つことが確認できる：
 	\[
 	\Ult \models \varphi([f_1], \dots, [f_n]) \iff \{ x \in S : \varphi(f_1(x), \dots, f_n(x)) \} \in U.
 	\]
@@ -650,7 +650,7 @@
 	\[
 	\Ult \models \varphi(j(a_1), \dots, j(a_n)) \iff V \models \varphi(a_1, \dots, a_n) 
 	\]
-	を得る．つまり，モデル理論で使っていた用語を拝借すると，$j \colon V \to \Ult$は\textbf{初等埋め込み}である．
+	を得る．つまり，モデル理論で使っていた用語を拝借すると，$j \colon V \to \Ult$は\textbf{初等埋め込み} (elementary embedding)である．
 
 	超冪がwell-foundedである状況を考察する．
 	set-likeであることは常に成り立つ：つまり任意の$f$について
@@ -695,7 +695,7 @@
 		\[
 		\crit(j) = \min \{ \alpha \in \Ordinals : \alpha < j(\alpha) \}
 		\]
-		とおき，$j$の\textbf{臨界点}と呼ぶ．
+		とおき，$j$の\textbf{臨界点} (critical point)と呼ぶ．
 	\end{defi}
 	
 	\begin{lem}
@@ -983,7 +983,7 @@
 	\]
 	$G$を$(V, P)$ジェネリックフィルターとする．
 	
-	以下の補題で\textbf{$M$超フィルター}というのは次を満たす$D \subset \Pow^M(\kappa)$である：
+	以下の補題で\textbf{$M$超フィルター} ($M$-ultrafilter)というのは次を満たす$D \subset \Pow^M(\kappa)$である：
 	\begin{enumerate}
 		\item $\emptyset \not \in D, \kappa \in D$.
 		\item $X, Y \in D$なら$X \cap Y \in D$.
@@ -1015,7 +1015,7 @@
 
 	これから$I$は$\kappa$上の$\kappa$完備イデアルとし，全ての一点集合を含むものとする．
 	すると$G$は$\kappa$上の非単項$\kappa$完備$M$超フィルターである．
-	$V[G]$で超冪$\Ult_G(V)$を考える．これを\textbf{ジェネリック超冪}という．
+	$V[G]$で超冪$\Ult_G(V)$を考える．これを\textbf{ジェネリック超冪} (generic ultrapower)という．
 	これは$\ZFC$のモデルだが，必ずしもwell-foundedではない．
 	
 	Łośの定理はジェネリック超冪でも成立する：
@@ -1121,7 +1121,7 @@
 	
 	\section{峻厳イデアル}
 	
-	$\kappa$完備イデアル$I$が\textbf{峻厳}であるとは，そのジェネリック超冪$\Ult_G(V)$が常にwell-foundedとなることを意味する．
+	$\kappa$完備イデアル$I$が\textbf{峻厳} (precipitous)であるとは，そのジェネリック超冪$\Ult_G(V)$が常にwell-foundedとなることを意味する．
 	
 	峻厳イデアルの存在と可測基数の存在は無矛盾等価である．本節では，その片側，可測基数の存在から峻厳イデアルの存在の無矛盾性を導く方を示す．もう一方の方向は本稿では示さない．
 	
